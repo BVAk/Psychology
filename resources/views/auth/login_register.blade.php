@@ -5,10 +5,20 @@
 	<div class="form-container sign-up-container">
 		<form method="POST" action="{{ route('register') }}">
         @csrf
-			<h1>Create Account</h1>
-			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus/>
-            <input type="email" placeholder="Email"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" />
+			<h1>Створи свій акаунт</h1>
+			<span>для пізнання самого себе</span>
+			<input type="text" placeholder="Прізвище"  class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus/>
+			<input type="text" placeholder="Ім'я"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" />
+			<select name="role" placeholder="Стан" class="form-control" required>
+				<option value="student">Студент</option>
+				<option value="teacher">Викладач</option>
+			</select>
+			<select name="group" placeholder="Номер групи" class="form-control" required>
+				<option value="1">1</option>
+				<option value="2">2</option>
+			</select>
+			<input type="integer" placeholder="Ваш вік" class="form-control" value="{{ old('age') }}" name="age" >
+			<input type="email" placeholder="Email"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" />
             @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

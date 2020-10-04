@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>JavaLearn</title>
+    <title>Psychology</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -71,7 +71,7 @@
 <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
     <div class="content bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light bg-tr">
-            <a class="navbar-brand text-white" href="/">JavaLearn</a>
+            <a class="navbar-brand" href="/">Psychology</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -81,41 +81,44 @@
                 <ul class="navbar-nav navbar-right">
                     @guest
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/themes">Навчання</a>
+                        <a class="nav-link" href="/themes">Пройти тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="{{ route('login_register') }}">Увійти</a>
+                        <a class="nav-link" href="{{ route('login_register') }}">Увійти</a>
                     </li>
                     @else
 
                     @if(Auth::user()->role == "student")
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/student/themes">Навчання</a>
+                        <a class="nav-link" href="/student/themes">Пройти тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/home">Профіль</a>
+                        <a class="nav-link" href="/home">Профіль</a>
                     </li>
                     @elseif(Auth::user()->role == "admin")
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/allthemes">Навчання</a>
+                        <a class="nav-link" href="/allthemes">Тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/results">Результати</a>
+                        <a class="nav-link" href="/results">Результати</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/home">Профіль</a>
+                        <a class="nav-link" href="/results">Студенти</a>
+                    </li>
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" href="/home">Профіль</a>
                     </li>
                     @else
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/teacher/themes">Мої теми</a>
+                        <a class="nav-link" href="/teacher/themes">Мої теми</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/results">Результати</a>
+                        <a class="nav-link" href="/results">Результати</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link text-white" href="/home">Профіль</a>
+                        <a class="nav-link" href="/home">Профіль</a>
                     </li>
 
                     @endif
@@ -125,7 +128,7 @@
         </nav>
         <div class="row m-0 pb-5">
             <div class="col-md-6 h-auto pt-5">
-                <label class="text-white mt-5 h1"><b>JavaLearn.</b> Навчитися програмувати легко!</label> <br>
+                <label class=" mt-5 h1"><b>Psychology.</b> Навчись пізнавати себе!</label> <br>
             </div>
             <div class="col-md-6 text-center">
                 <img width="100%" src="img/Basic-Psychology-FB.jpg">
@@ -160,19 +163,19 @@
 
     <div class="content bg">
         <div class="row m-0 pt-3">
-            <div class="col-md-7 text-white m-auto">
-                <h3><b>Java</b></h3>
-                Одна з найбільш популярних мов програмування. Пройди навчання і стань справжнім спеціалістом!
+            <div class="col-md-7 m-auto">
+                <h3><b>Psychology</b></h3>
+              Текст о психологии
             </div>
             <div class="col-md-5 pt-5 text-center">
                 @guest
-                <a href="/themes" class="gradient-button w-button mr-3 text-white mb-5">Теорія</a>
+                <a href="/themes" class="gradient-button w-button mr-3 text-white mb-5">Тести</a>
                 @else
                 @if ( Auth::user()->role=="teacher")
-                <a href="/teacher/themes" class="gradient-button w-button mr-3 text-white mb-5">Теорія</a>
+                <a href="/teacher/themes" class="gradient-button w-button mr-3 text-white mb-5">Тести</a>
                 @elseif ( Auth::user()->role=="admin")
                 @else
-                <a href="/student/themes" class="gradient-button w-button mr-3 text-white mb-5">Теорія</a>
+                <a href="/student/themes" class="gradient-button w-button mr-3 text-white mb-5">Тести</a>
 
                 @endif
                 @endguest
@@ -186,7 +189,7 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12 mb-md-0 mb-3 text-center">
-                        <h3>JavaLearn</h3>
+                        <h3>Pscychology</h3>
                     </div>
 
                 </div>
