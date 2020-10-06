@@ -16,52 +16,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/nunito-sans" type="text/css" />
-    <style type="text/css">
-        body {
-            font-family: 'NunitoSansRegular' !important;
-        }
-        #return-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.7);
-    width: 50px;
-    height: 50px;
-    display: block;
-    text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    display: none;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-#return-to-top i {
-    color: #fff;
-    margin: 0;
-    position: relative;
-    left: 16px;
-    top: 13px;
-    font-size: 19px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-#return-to-top:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-#return-to-top:hover i {
-    color: #fff;
-    top: 5px;
-}
-
-    </style>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
@@ -142,22 +96,22 @@
             <div class="space"></div>
             <div class="col-md-3 text-center m-4 pt-3 div-box">
                 <i class="far fa-user fa-5x"></i> <br>
-                <label class="pt-3"><b>Інтерфейс</b></label>
-                <label class="pt-2">Зручний користувацький інтерфейс як для учня, так і для вчителя.</label>
-
-            </div>
-            <div class="col-md-3 text-center m-4 pt-3 div-box">
-                <i class="fas fa-book fa-5x"></i> <br>
-                <label class="pt-3"><b>Теорія</b></label>
-                <label class="pt-2">Теоретичний матеріал дозволить досконально вивчити мову програмування.</label>
-
+                <label class="pt-3"><b>Користувацький інтерфейс</b></label>
+                <label class="pt-2">Зручний і швидкий доступ</label>
             </div>
             <div class="col-md-3 text-center m-4 pt-3 div-box">
                 <i class="far fa-check-circle fa-5x"></i> <br>
                 <label class="pt-3"><b>Тести</b></label>
-                <label class="pt-2">Грамотні тести дозволять перевірити отримані теретичні знання.</label>
+                <label class="pt-2">11 окремих субтестів, які допоможуть стати на вірний шлях</label>
 
             </div>
+            <div class="col-md-3 text-center m-4 pt-3 div-box">
+                <i class="fas fa-book fa-5x"></i> <br>
+                <label class="pt-3"><b>Обробка даних</b></label>
+                <label class="pt-2">Обробка і інтерпретація результатів на трьох рівнях </label>
+
+            </div>
+           
         </div>
     </div>
 
@@ -165,7 +119,7 @@
         <div class="row m-0 pt-3">
             <div class="col-md-7 m-auto">
                 <h3><b>Psychology</b></h3>
-              Текст о психологии
+                Тест Векслера є одним з найвідоміших тестів для вимірювання рівня інтелектуального розвитку. Тест заснований на ієрархічній моделі інтелекту Д. Векслера і діагностує загальний інтелект і його складові - вербальний і невербальний інтелекти.
             </div>
             <div class="col-md-5 pt-5 text-center">
                 @guest

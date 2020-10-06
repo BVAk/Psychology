@@ -9,3 +9,18 @@ signUpButton.addEventListener('click', () => {
 signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
+
+function stateCheck() {
+
+    var e = document.getElementById("type");
+    var type = e.options[e.selectedIndex].value;
+
+    if (type == 'student') {
+        document.getElementById("group").style.display = "block";
+        document.getElementById("age").style.display = "block";
+    } else if (type == 'teacher') {
+        document.getElementById("group").style.display = "none";
+        document.getElementById("age").style.display = "none";
+    }
+
+}
