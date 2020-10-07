@@ -29,6 +29,7 @@
             <div class="collapse navbar-collapse justify-content-end h5" id="navbarNav">
 
                 <ul class="navbar-nav navbar-right">
+                  
                     @guest
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="/themes">Пройти тест</a>
@@ -115,7 +116,6 @@
                 </ul>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

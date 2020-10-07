@@ -18,7 +18,6 @@ class CreateTest extends Migration
             $table->string('question');
             $table->string('type');
             $table->foreignId('category_id')->constrained();  
-            $table->timestamps();
         });
     }
 
