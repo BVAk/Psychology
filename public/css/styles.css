@@ -314,7 +314,9 @@ body {
     border-radius: 40px;
 }
 
-div.content.bg img {}
+div.content.bg img {
+    width: 300px;
+}
 
 .no-js #loader {
     display: none;
@@ -383,4 +385,49 @@ body {
 #return-to-top:hover i {
     color: #fff;
     top: 5px;
+}
+
+p {
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 15px
+}
+
+em,
+li,
+li a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #515769
+}
+
+a {
+    color: #81848f;
+    font-family: Hind, sans-serif;
+    font-weight: 700;
+}
+
+a:hover {
+    color: #999caa;
+    text-decoration: none;
+}
+
+.small {
+    margin-left: 20px!important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #bfc1c7;
+}
+
+.link {
+    font-size: 13px;
+    font-weight: 600
+}
+
+.card {
+    flex-direction: row;
+    flex-flow: wrap;
+    padding-top: 15px;
+    justify-content: center;
+    align-items: stretch;
 }

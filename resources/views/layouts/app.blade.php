@@ -32,7 +32,7 @@
                   
                     @guest
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/themes">Пройти тест</a>
+                        <a class="nav-link" href="{{route('categories')}}">Пройти тест</a>
                     </li>
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="{{ route('login_register') }}">Увійти</a>
@@ -42,7 +42,7 @@
                     @if(Auth::user()->role == "student")
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/student/themes">Пройти тест</a>
+                        <a class="nav-link" href="{{route('categories')}}">Пройти тест</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -89,7 +89,7 @@
                     @else
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/teacher/themes">Мої теми</a>
+                        <a class="nav-link" href="{{route('categories')}}">Мої теми</a>
                     </li>
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="/results">Результати</a>
