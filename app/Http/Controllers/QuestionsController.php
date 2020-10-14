@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Questions;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class QuestionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::get();
-        return view('categories', compact('categories'));
+        //
     }
 
     /**
@@ -42,22 +41,21 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Categories  $categories
+     * @param  \App\Models\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function show(Categories $categories)
+    public function show(Questions $questions)
     {
-$test=$categories->test();
-        return view('category', compact('categories','test'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Categories  $categories
+     * @param  \App\Models\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categories $categories)
+    public function edit(Questions $questions)
     {
         //
     }
@@ -66,10 +64,10 @@ $test=$categories->test();
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categories  $categories
+     * @param  \App\Models\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categories $categories)
+    public function update(Request $request, Questions $questions)
     {
         //
     }
@@ -77,10 +75,10 @@ $test=$categories->test();
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Categories  $categories
+     * @param  \App\Models\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $categories)
+    public function destroy(Questions $questions)
     {
         //
     }

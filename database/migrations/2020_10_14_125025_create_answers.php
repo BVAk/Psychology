@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTest extends Migration
+class CreateAnswers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTest extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('question');
-            $table->string('type');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->string('answer');
+            $table->boolean('correctness');
+            $table->foreignId('question_id')->constrained('questions');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateTest extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('answers');
     }
 }

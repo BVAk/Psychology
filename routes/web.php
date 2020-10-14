@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,6 @@ Auth::routes();
 Route::get('/login-register', function () {
     return view('auth\login_register');
 })->name('login_register');
-Route::get('/themes', 'App\Http\Controllers\CategoriesController@index')->name('categories');
+Route::resource('themes', CategoriesController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
