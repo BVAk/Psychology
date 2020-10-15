@@ -1,4 +1,4 @@
-<?php
+dd<?php
 
 namespace App\Http\Controllers;
 
@@ -45,10 +45,11 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function show(Categories $categories)
+    public function show($categories)
     {
-$test=$categories->test();
-        return view('category', compact('categories','test'));
+        $categories = Categories::where('id',$categories)->first();
+        $questions=Categories::where('id',$categories)->test();
+        return view('category', compact('categories','questions'));
     }
 
     /**

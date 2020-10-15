@@ -11,7 +11,7 @@
                 </div>
                 <h4><a href="#">{{$category->name}}</a> <span class="text-uppercase small">{{$category->type}}</span></h4>
                 <p>{{$category->short_description}}</p>
-                <a class="link" href="{{route('themes.show',['theme'=>$category])}}">Пройти тест</a>
+                <a class="link" href="{{route('themes.show',$category->id)}}">Пройти тест</a>
             </div>
             @endforeach
         </div>

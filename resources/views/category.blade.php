@@ -11,6 +11,8 @@
                 <h4><a href="#">{{$categories->name}}</a> <span class="text-uppercase small">{{$categories->type}}</span></h4>
                 <p>{{$categories->short_description}}</p>
                 <p>{{$categories->full_description}}</p>
+                <button onclick="opentest()">Розпочати тест</button>
+                {{$question}}
             </div>
         </div>
     </div>
