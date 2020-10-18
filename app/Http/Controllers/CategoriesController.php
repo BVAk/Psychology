@@ -1,8 +1,9 @@
-dd<?php
+<?php
 
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Questions;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -48,7 +49,8 @@ class CategoriesController extends Controller
     public function show($categories)
     {
         $categories = Categories::where('id',$categories)->first();
-        $questions=Categories::where('id',$categories)->test();
+        $questions=Categories::find($categories->id)->test;
+        $customer = Questions::find($questions->id)->answer;
         return view('category', compact('categories','questions'));
     }
 

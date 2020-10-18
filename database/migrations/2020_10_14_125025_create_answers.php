@@ -17,7 +17,7 @@ class CreateAnswers extends Migration
             $table->id();
             $table->string('answer');
             $table->boolean('correctness');
-            $table->foreignId('question_id')->constrained('questions');
+            $table->foreignId('questions_id')->constrained('questions');
         });
     }
 

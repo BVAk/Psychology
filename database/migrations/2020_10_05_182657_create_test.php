@@ -17,7 +17,7 @@ class CreateTest extends Migration
             $table->id();
             $table->string('question');
             $table->string('type');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('categories_id')->constrained('categories');
         });
     }
 

@@ -12,9 +12,9 @@ class Questions extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'question', 'type', 'category_id'
+        'question', 'type', 'categories_id'
     ];
-    public function test()
+    public function answer()
     {
         return $this->hasMany('App\Models\Answers');
     }

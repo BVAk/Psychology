@@ -12,7 +12,13 @@
                 <p>{{$categories->short_description}}</p>
                 <p>{{$categories->full_description}}</p>
                 <button onclick="opentest()">Розпочати тест</button>
-                {{$question}}
+               <div class="test">
+                <ol>
+                    @foreach ($questions as $question)
+                   <li> {{$question->question}}</li>
+                    @endforeach
+                </ol>
+               </div>
             </div>
         </div>
     </div>
