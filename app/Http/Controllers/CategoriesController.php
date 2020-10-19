@@ -50,7 +50,6 @@ class CategoriesController extends Controller
     {
         $categories = Categories::where('id',$categories)->first();
         $questions=Categories::find($categories->id)->test;
-        $customer = Questions::find($questions->id)->answer;
         return view('category', compact('categories','questions'));
     }
 

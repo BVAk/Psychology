@@ -431,3 +431,16 @@ a:hover {
     justify-content: center;
     align-items: stretch;
 }
+
+.about {
+    margin: 10px;
+    text-align: center;
+}
+
+button {
+    justify-content: center;
+}
+
+.test {
+    display: none;
+}

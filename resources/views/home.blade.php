@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+@if(isset($mark)){{$mark}}@endif
                     {{ __('You are logged in!') }}
                 </div>
             </div>

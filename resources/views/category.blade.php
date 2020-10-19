@@ -4,21 +4,39 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card">
-            <div class="col-sm-4">
-                <div class="">
+            <div class="col m-2">
+                <div class="about">
                     <img class="img-responsive wow fadeIn" src="{{asset('img/background3.png')}}" alt="Latest Products Image">
+                    <h4><a href="#">{{$categories->name}}</a> <span class="text-uppercase small">{{$categories->type}}</span></h4>
+                    <p>{{$categories->short_description}}</p>
+                    <p>{{$categories->full_description}}</p>
+                    <button  class="btn btn-info" onclick="opentest()">Розпочати тест</button>
                 </div>
-                <h4><a href="#">{{$categories->name}}</a> <span class="text-uppercase small">{{$categories->type}}</span></h4>
-                <p>{{$categories->short_description}}</p>
-                <p>{{$categories->full_description}}</p>
-                <button onclick="opentest()">Розпочати тест</button>
-               <div class="test">
-                <ol>
-                    @foreach ($questions as $question)
-                   <li> {{$question->question}}</li>
-                    @endforeach
-                </ol>
-               </div>
+                <form class="test" action="{{route('themes.test')}}" method="post">
+                    {{ csrf_field() }}
+                    @php
+                    $i = 1
+                    @endphp
+                    <ol>
+                        @foreach ($questions as $question)
+                        @if($question->type == 'test')
+                        <li> {{$question->question}}</li>
+                        @foreach ($question->answer as $answer)
+                        <div class="col-md-12">
+                            <label>
+                                <input type="radio" name="{{$i}}" value="{{$answer->correctness}}" class="">
+                                {{$answer->answer}}
+                            </label>
+                        </div>
+                        @endforeach
+                        @php
+                        $i++
+                        @endphp
+                        @endif
+                        @endforeach
+                    </ol>
+                    <button type="submit" name="submit" class="btn btn-info">Завершити</button>
+                </form>
             </div>
         </div>
     </div>
