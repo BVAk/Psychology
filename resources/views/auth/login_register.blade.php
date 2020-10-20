@@ -43,7 +43,7 @@
 						<input type="text" placeholder="Прізвище" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus />
 						<input type="text" placeholder="Ім'я" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" />
 						<select id="type" name="role" placeholder="Стан" class="form-control" onclick="stateCheck()" required>
-							<option>Стан</option>	
+							<option>Стан</option>
 							<option value="student">Студент</option>
 							<option value="teacher">Викладач</option>
 						</select>
@@ -59,43 +59,42 @@
 							<strong>{{ $message }}</strong>
 						</span>
 						@enderror
-						<input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" />
-					
-						<button type="submit">Sign Up</button>
+						<input type="password" placeholder="Пароль" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" />
+
+						<button type="submit">Зареєструвати</button>
 					</form>
 				</div>
 				<div class="form-container sign-in-container">
 					<form method="POST" action="{{ route('login') }}">
 						@csrf
-						<h1>Sign in</h1>
-						<span>or use your account</span>
+						<h1>Вхід</h1>
+						<span>до свого профілю</span>
 						<input type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
 						@error('email')
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
 						</span>
 						@enderror
-						<input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
+						<input type="password" placeholder="Пароль" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
 						@error('password')
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $message }}</strong>
 						</span>
 						@enderror
-						<a href="#">Forgot your password?</a>
-						<button type="submit">Sign In</button>
+						<button type="submit">Увійти</button>
 					</form>
 				</div>
 				<div class="overlay-container">
 					<div class="overlay">
 						<div class="overlay-panel overlay-left">
-							<h1>Welcome Back!</h1>
-							<p>To keep connected with us please login with your personal info</p>
-							<button class="ghost" id="signIn">Sign In</button>
+							<h1>Із поверненням!</h1>
+							<p>Маєте вже профіль? Для збереження і перегляду своїх змін, використайте свої наданні дані для входу. </p>
+							<button class="ghost" id="signIn">Увійти</button>
 						</div>
 						<div class="overlay-panel overlay-right">
-							<h1>Hello, Friend!</h1>
-							<p>Enter your personal details and start journey with us</p>
-							<button class="ghost" id="signUp">Sign Up</button>
+							<h1>Вітаємо, друже!</h1>
+							<p>Залиш свої данні і розпочни пізнання себе.</p>
+							<button class="ghost" id="signUp">Зареєструватися</button>
 						</div>
 					</div>
 				</div>
