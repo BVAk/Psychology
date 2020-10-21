@@ -18,4 +18,8 @@ class Categories extends Model
     {
         return $this->hasMany('App\Models\Questions');
     }
+    
+    public function user(){
+        return $this->hasMany('App\Models\TestStudent');
+    }
 }

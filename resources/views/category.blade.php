@@ -14,6 +14,7 @@
                 </div>
                 <form class="test" action="{{route('themes.test')}}" method="post">
                     {{ csrf_field() }}
+                    <input type="hidden" name="category" value="{{$categories->id}}">
                     @php
                     $i = 1
                     @endphp
