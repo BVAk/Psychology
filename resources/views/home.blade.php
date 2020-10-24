@@ -9,12 +9,17 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-@if(isset($mark)){{$mark}}@endif
-                    {{ __('You are logged in!') }}
+                    @forelse ($test as $mark)
+                    <li>{{ $mark->mark }}</li>
+                    @empty
+                    <p> Ви ще не проходили тести</p>
+                    @endforelse
+
+
                 </div>
             </div>
         </div>

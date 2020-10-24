@@ -16,7 +16,7 @@ class CreateAnswers extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->string('answer');
-            $table->boolean('correctness');
+            $table->integer('correctness');
             $table->foreignId('questions_id')->constrained('questions');
         });
     }

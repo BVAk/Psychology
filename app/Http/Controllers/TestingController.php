@@ -15,6 +15,6 @@ class TestingController extends Controller
             $testing_mark +=$request[$i];
         }
         TestStudent::insert( ['users_id' => Auth::user()->id, 'categories_id' => $request['category'],'mark'=>$testing_mark]);
-        return $testing_mark;
+        return redirect()->route('home');
     }
 }
