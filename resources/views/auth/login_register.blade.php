@@ -49,8 +49,12 @@
 						</select>
 						<select id="group" name="group" placeholder="Номер групи" class="form-control" required>
 							<option>Номер групи</option>
+							@forelse ($groups as $group)
+							<option value="{{$group->group}}">{{$group->group}}</option>
+							@empty
 							<option value="1">1</option>
 							<option value="2">2</option>
+							@endforelse
 						</select>
 						<input id="age" type="integer" placeholder="Ваш вік" class="form-control" value="{{ old('age') }}" name="age">
 						<input type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" />

@@ -18,8 +18,6 @@
                     @empty
                     <p> Ви ще не проходили тести</p>
                     @endforelse
-
-
                 </div>
             </div>
         </div>

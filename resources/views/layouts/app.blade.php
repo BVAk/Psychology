@@ -62,13 +62,13 @@
                     </li>
                     @elseif(Auth::user()->role == "teacher")
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/allthemes">Тест</a>
+                        <a class="nav-link" href="{{ route('teacher.themes') }}">Тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/results">Результати</a>
+                        <a class="nav-link" href="{{ route('teacher.results') }}">Результати</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/results">Студенти</a>
+                        <a class="nav-link" href="{{ route('teacher.students') }}">Студенти</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

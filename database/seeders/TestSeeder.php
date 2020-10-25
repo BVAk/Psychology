@@ -87,15 +87,8 @@ class TestSeeder extends Seeder
             [ 'question' => "яйце-зерно", 'type' => "test", "categories_id" => "4"],
             [ 'question' => "заохочення-покарання", 'type' => "test", "categories_id" => "4"],
             [ 'question' => "деревина-спирт", 'type' => "test", "categories_id" => "4"],
-            [ 'question' => "муха-дерево", 'type' => "test", "categories_id" => "4"],
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],  
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],
-            [ 'question' => "", 'type' => "test", "categories_id" => "3"],
+            [ 'question' => "муха-дерево", 'type' => "test", "categories_id" => "4"]
+            //[ 'question' => "", 'type' => "test", "categories_id" => "3"],
             
             
         ]);
