@@ -44,8 +44,8 @@
 						<input type="text" placeholder="Ім'я" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" />
 						<select id="type" name="role" placeholder="Стан" class="form-control" onclick="stateCheck()" required>
 							<option>Стан</option>
-							<option value="student">Студент</option>
-							<option value="teacher">Викладач</option>
+							<option value="client">Клієнт</option>
+							<option value="psychologic">Психолог</option>
 						</select>
 						<select id="group" name="group" placeholder="Номер групи" class="form-control" required>
 							<option>Номер групи</option>

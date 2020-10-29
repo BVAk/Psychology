@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse justify-content-end h5" id="navbarNav">
 
                 <ul class="navbar-nav navbar-right">
-                  
+
                     @guest
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="{{route('themes.index')}}">Пройти тест</a>
@@ -39,17 +39,19 @@
                     </li>
                     @else
 
-                    @if(Auth::user()->role == "student")
+                    @if(Auth::user()->role == "client")
 
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="{{route('themes.index')}}">Пройти тест</a>
                     </li>
                     <li class="nav-item dropdown">
+
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="nav-link" href="/home">Профіль</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 Вийти
@@ -60,22 +62,21 @@
                             </form>
                         </div>
                     </li>
-                    @elseif(Auth::user()->role == "teacher")
+                    @elseif(Auth::user()->role == "psychologic")
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('teacher.themes') }}">Тест</a>
+                        <a class="nav-link" href="{{ route('psychologic.themes') }}">Тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('teacher.results') }}">Результати</a>
-                    </li>
-                    <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('teacher.students') }}">Студенти</a>
+                        <a class="nav-link" href="{{ route('psychologic.clients') }}">Клієнти</a>
                     </li>
                     <li class="nav-item dropdown">
+
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="nav-link" href="/home">Профіль</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 Вийти
@@ -133,7 +134,7 @@
             </div>
         </div>
     </footer>
-<script src="{{asset('js/common.js')}}"></script>
+    <script src="{{asset('js/common.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">

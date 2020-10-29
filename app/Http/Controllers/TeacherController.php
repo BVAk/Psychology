@@ -21,17 +21,21 @@ class TeacherController extends Controller
         $results = TestStudent::get();
         return view('categories', compact('categories'));
     }
-    public function students()
+    public function clients()
     {
         $groups=GroupTeacher::where('users_id',Auth::user()->id)->get();
-        $students = User::where('role','student')->get();
-        return view('teacher_groups', compact('students','groups'));
+        $clients = User::where('role','client')->get();
+        return view('psyhologic_groups', compact('clients','groups'));
     }
-    public function groupShow(){
+    public function groupShow($group){
+        $group=GroupTeacher::find($group);
+        $users=User::where('role','client')->where('group',$group->group)->get();
+        return view('psyhologic_users',compact('group','users'));
         
     }
     public function groupCreate(Request $request){
         GroupTeacher::insert(['users_id'=>Auth::user()->id,'group'=>$request->group]);
+        return redirect()->route('psychologic.clients');
     }
 
 }

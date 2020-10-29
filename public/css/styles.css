@@ -444,3 +444,16 @@ button {
 .test {
     display: none;
 }
+
+.card {
+    padding: 15px;
+}
+
+.col.box {
+    border: 1px solid grey;
+    width: 296px;
+    margin: 3px;
+    padding: 6px;
+    justify-content: center;
+    display: flex;
+}

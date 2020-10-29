@@ -15,10 +15,10 @@ function stateCheck() {
     var e = document.getElementById("type");
     var type = e.options[e.selectedIndex].value;
 
-    if (type == 'student') {
+    if (type == 'client') {
         document.getElementById("group").style.display = "block";
         document.getElementById("age").style.display = "block";
-    } else if (type == 'teacher') {
+    } else if (type == 'psyсhologic') {
         document.getElementById("group").style.display = "none";
         document.getElementById("age").style.display = "none";
     }
