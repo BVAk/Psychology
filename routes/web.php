@@ -35,10 +35,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 /*Teacher-psychology*/
 Route::get('/psycholog/themes', [App\Http\Controllers\TeacherController::class,'themes'])->name('psychologic.themes');
+Route::get('/psycholog/themes/edit/{id}', [App\Http\Controllers\CategoriesController::class,'edit'])->name('psychologic.themes.edit');
 Route::get('/psycholog/results', [App\Http\Controllers\TeacherController::class,'results'])->name('psychologic.results');
 Route::get('/psycholog/clients', [App\Http\Controllers\TeacherController::class,'clients'])->name('psychologic.clients');
 Route::get('/psycholog/clients/group/{id}', [App\Http\Controllers\TeacherController::class,'groupShow'])->name('psychologic.clients.group');
 Route::get('/psycholog/clients/profile/{id}', [App\Http\Controllers\TeacherController::class,'groupShow'])->name('psychologic.clients.user');
-
+Route::post('/psycholog/category/edit', [App\Http\Controllers\CategoriesController::class,'update'])->name('category.edit');
 Route::post('/psycholog/clients/group/create', [App\Http\Controllers\TeacherController::class,'groupCreate'])->name('psychologic.group.create');
 

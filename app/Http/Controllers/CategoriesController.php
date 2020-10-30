@@ -59,9 +59,11 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categories $categories)
+    public function edit($categories)
     {
-        //
+        $categories = Categories::where('id',$categories)->first();
+        $questions=Categories::find($categories->id)->test;
+        return view('category_edit', compact('categories','questions'));
     }
 
     /**
@@ -71,8 +73,14 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categories $categories)
+    public function update(Request $request, $categories)
     {
+        $categories = Categories::where('id',$categories)->update([
+            'theme_name' => $request->theme_name,
+            'theme_text' => $request->theme_text,
+            'users_id' => $request->users_id]);
+        $questions=Categories::find($categories->id)->test;
+        return view('category_edit', compact('categories','questions'));
         //
     }
 

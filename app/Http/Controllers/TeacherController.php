@@ -14,7 +14,7 @@ class TeacherController extends Controller
     public function themes()
     {
         $themes = Categories::get();
-        return view('categories', compact('themes'));
+        return view('psychologic_categories', compact('themes'));
     }
     public function results()
     {
