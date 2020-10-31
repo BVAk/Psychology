@@ -447,6 +447,7 @@ button {
 
 .card {
     padding: 15px;
+    min-width: 60%;
 }
 
 .col.box {
