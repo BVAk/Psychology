@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answers;
 use App\Models\Categories;
 use App\Models\Questions;
 use Illuminate\Http\Request;
@@ -48,9 +49,9 @@ class CategoriesController extends Controller
      */
     public function show($categories)
     {
-        $categories = Categories::where('id',$categories)->first();
-        $questions=Categories::find($categories->id)->test;
-        return view('category', compact('categories','questions'));
+        $categories = Categories::where('id', $categories)->first();
+        $questions = Categories::find($categories->id)->test;
+        return view('category', compact('categories', 'questions'));
     }
 
     /**
@@ -61,9 +62,9 @@ class CategoriesController extends Controller
      */
     public function edit($categories)
     {
-        $categories = Categories::where('id',$categories)->first();
-        $questions=Categories::find($categories->id)->test;
-        return view('category_edit', compact('categories','questions'));
+        $categories = Categories::where('id', $categories)->first();
+        $questions = Categories::find($categories->id)->test;
+        return view('category_edit', compact('categories', 'questions'));
     }
 
     /**
@@ -73,14 +74,27 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $categories)
+    public function update(Request $request)
     {
-        $categories = Categories::where('id',$categories)->update([
-            'theme_name' => $request->theme_name,
-            'theme_text' => $request->theme_text,
-            'users_id' => $request->users_id]);
-        $questions=Categories::find($categories->id)->test;
-        return view('category_edit', compact('categories','questions'));
+        Categories::where('id', $request->category)->update([
+            'name' => $request->name,
+            'type' => $request->type,
+            'short_description' => $request->short_description,
+            'full_description' => $request->full_description
+        ]);
+        $questions = Categories::find($request->category)->test;
+        foreach ($questions as $question) {
+            Questions::where('id', $question->id)->update([
+                'question' => $request->{'q' . $question->id}
+            ]);
+            foreach ($question->answer as $answer) {
+                Answers::where('id', $answer->id)->update([
+                    'answer' => $request->{'a' . $answer->id},
+                    'correctness' => $request->{'ca' . $answer->id}
+                ]);
+            }
+        }
+        return redirect()->back();
         //
     }
 
