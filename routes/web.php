@@ -31,6 +31,7 @@ Route::get('/login-register', function () {
 Route::resource('themes', CategoriesController::class);
 Route::post('/themes/test', [App\Http\Controllers\TestingController::class,'test'])->name('themes.test');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/user/edit', [App\Http\Controllers\HomeController::class,'update'])->name('user.edit');
 
 
 /*Teacher-psychology*/

@@ -458,3 +458,7 @@ button {
     justify-content: center;
     display: flex;
 }
+
+.img-circle {
+    border-radius: 50%;
+}
