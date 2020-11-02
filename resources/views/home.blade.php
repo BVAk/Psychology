@@ -51,10 +51,10 @@
                                             <select id="group" name="group" placeholder="Номер групи" class="form-control" required>
                                                 <option>Номер групи</option>
                                                 @forelse ($groups as $group)
-                                                <option value="{{$group->group}}">{{$group->group}}</option>
+                                                <option value="{{$group->group}}" @if(Auth::user()->group == $group->group) selected="selected" @endif>{{$group->group}}</option>
                                                 @empty
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
+                                                <option value="1" <?php if(Auth::user()->group == 1): ?> selected="selected"<?php endif; ?>>1</option>
+                                                <option value="2" <?php if(Auth::user()->group == 2): ?> selected="selected"<?php endif; ?>>2</option>
                                                 @endforelse
                                             </select>
                                         </div>
@@ -64,7 +64,7 @@
                                             <label for="phone">
                                                 <h4>Ваш вік</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="age" placeholder="Введіть ваш вік">
+                                            <input type="text" class="form-control" name="age" placeholder="Введіть ваш вік" value="{{Auth::user()->age}}">
                                         </div>
                                     </div>
                                     @endif

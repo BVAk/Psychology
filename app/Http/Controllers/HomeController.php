@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupTeacher;
 use App\Models\TestStudent;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,8 +29,8 @@ class HomeController extends Controller
     public function index()
     {
         $test=TestStudent::where('users_id',Auth::user()->id)->get();
-        
-        return view('home',compact('test'));
+        $groups=GroupTeacher::get();
+        return view('home',compact('test','groups'));
     }
     public function update(Request $data)
     {
@@ -40,7 +41,6 @@ class HomeController extends Controller
             'email' => $data['email'],
             'group' => $data['group'],
             'age' => $data['age'],
-            'role' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
         else  User::where('id', Auth::user()->id)->update([
@@ -49,7 +49,6 @@ class HomeController extends Controller
             'email' => $data['email'],
             'group' => $data['group'],
             'age' => $data['age'],
-            'role' => $data['role'],
         ]);
         return redirect()->back();
         //
