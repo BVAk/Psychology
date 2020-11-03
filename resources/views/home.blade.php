@@ -21,10 +21,10 @@
                     <div class="col-sm-9">
                         <div class="list-group" id="myList" role="tablist">
                             <a class="list-group-item list-group-item-action " data-toggle="list" href="#home" role="tab">Редагувати профіль</a>
-                            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#tests" role="tab">Перегляд пройдених тестів</a>
+                            @if(Auth::user()->role=="client")<a class="list-group-item list-group-item-action active" data-toggle="list" href="#tests" role="tab">Перегляд пройдених тестів</a>@endif
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane" id="home">
+                            <div class="tab-pane <?php if(Auth::user()->role == "psychologic"): ?> active<?php endif; ?>" id="home">
                                 <hr>
                                 <form class="form" action="{{route('user.edit')}}" method="post" id="registrationForm">
                                     @csrf
@@ -98,6 +98,7 @@
 
                             </div>
                             <!--/tab-pane-->
+                            @if(Auth::user()->role=="client")
                             <div class="tab-pane active" id="tests">
                                 <h2></h2>
                                 @forelse ($test as $mark)
@@ -114,6 +115,7 @@
                                     <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
                                 </ul>
                             </div>
+                            @endif
                             <!--/tab-pane-->
 
                         </div>

@@ -41,6 +41,6 @@ Route::get('/psycholog/results', [App\Http\Controllers\TeacherController::class,
 Route::get('/psycholog/clients', [App\Http\Controllers\TeacherController::class,'clients'])->name('psychologic.clients');
 Route::get('/psycholog/clients/group/{id}', [App\Http\Controllers\TeacherController::class,'groupShow'])->name('psychologic.clients.group');
 Route::get('/psycholog/clients/profile/{id}', [App\Http\Controllers\TeacherController::class,'groupShow'])->name('psychologic.clients.user');
-Route::post('/psycholog/category/edit/{id}', [App\Http\Controllers\CategoriesController::class,'update'])->name('category.edit');
+Route::post('/psycholog/category/edit', [App\Http\Controllers\CategoriesController::class,'update'])->name('category.edit');
 Route::post('/psycholog/clients/group/create', [App\Http\Controllers\TeacherController::class,'groupCreate'])->name('psychologic.group.create');
 
