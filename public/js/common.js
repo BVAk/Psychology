@@ -1,3 +1,3 @@
 function opentest() {
-    $(".test").css('display', 'block');
+    $(".test").css('display', 'flex');
 }

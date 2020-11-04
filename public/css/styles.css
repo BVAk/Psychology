@@ -314,10 +314,6 @@ body {
     border-radius: 40px;
 }
 
-div.content.bg img {
-    width: 300px;
-}
-
 .no-js #loader {
     display: none;
 }
@@ -443,6 +439,7 @@ button {
 
 .test {
     display: none;
+    flex-direction: column;
 }
 
 .card {
@@ -461,4 +458,23 @@ button {
 
 .img-circle {
     border-radius: 50%;
+}
+
+.card-img-top {
+    height: 225px;
+    width: 100%;
+    background-color: #4c2377;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image_name {
+    color: #f8f9fa;
+    font-family: Hind, sans-serif;
+    text-align: center;
+}
+
+.image_name h4 {
+    font-weight: 900 !important;
 }
