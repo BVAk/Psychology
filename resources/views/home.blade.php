@@ -24,7 +24,7 @@
                             @if(Auth::user()->role=="client")<a class="list-group-item list-group-item-action active" data-toggle="list" href="#tests" role="tab">Перегляд пройдених тестів</a>@endif
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane <?php if(Auth::user()->role == "psychologic"): ?> active<?php endif; ?>" id="home">
+                            <div class="tab-pane <?php if (Auth::user()->role == "psychologic") : ?> active<?php endif; ?>" id="home">
                                 <hr>
                                 <form class="form" action="{{route('user.edit')}}" method="post" id="registrationForm">
                                     @csrf
@@ -53,8 +53,8 @@
                                                 @forelse ($groups as $group)
                                                 <option value="{{$group->group}}" @if(Auth::user()->group == $group->group) selected="selected" @endif>{{$group->group}}</option>
                                                 @empty
-                                                <option value="1" <?php if(Auth::user()->group == 1): ?> selected="selected"<?php endif; ?>>1</option>
-                                                <option value="2" <?php if(Auth::user()->group == 2): ?> selected="selected"<?php endif; ?>>2</option>
+                                                <option value="1" <?php if (Auth::user()->group == 1) : ?> selected="selected" <?php endif; ?>>1</option>
+                                                <option value="2" <?php if (Auth::user()->group == 2) : ?> selected="selected" <?php endif; ?>>2</option>
                                                 @endforelse
                                             </select>
                                         </div>
@@ -93,38 +93,37 @@
                                         </div>
                                     </div>
                                 </form>
-
                                 <hr>
-
                             </div>
-                            <!--/tab-pane-->
                             @if(Auth::user()->role=="client")
                             <div class="tab-pane active" id="tests">
-                                <h2></h2>
-                                @forelse ($test as $mark)
-                                <li>{{ $mark->mark }}</li>
-                                @empty
-                                <p> Ви ще не проходили тести</p>
-                                @endforelse
-                                <hr>
                                 <ul class="list-group">
                                     <li class="list-group-item text-muted">Мої тести <i class="fa fa-dashboard fa-1x"></i></li>
-                                    <li class="list-group-item text-right"><span class="pull-left"><strong>Завершені тести</strong></span> 125</li>
-                                    <li class="list-group-item text-right"><span class="pull-left"><strong>Усі тести</strong></span> 37</li>
+                                    <a data-toggle="list" href="#results" role="tab">
+                                        <li class="list-group-item text-right"><span class="pull-left"><strong>Завершені тести</strong></span> {{$test->groupBy('categories_id')->count()}}</li>
+                                    </a>
+                                    <li class="list-group-item text-right"><span class="pull-left"><strong>Усього тестів</strong></span> {{$allTests->count()}}</li>
                                 </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="results">
+                                        <h2></h2>
+                                        @forelse ($test as $mark)
+                                        <li>{{ $mark->mark }}</li>
+                                        @empty
+                                        <p> Ви ще не проходили тести</p>
+                                        @endforelse
+
+                                    </div>
+                                </div>
                             </div>
                             @endif
-                            <!--/tab-pane-->
 
                         </div>
-                        <!--/tab-pane-->
-                    </div>
-                    <!--/tab-content-->
 
+                    </div>
                 </div>
-                <!--/col-9-->
             </div>
-            <!--/row-->
         </div>
     </div>
 </div>

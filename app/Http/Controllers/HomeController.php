@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\GroupTeacher;
 use App\Models\TestStudent;
 use App\Models\User;
@@ -30,7 +31,8 @@ class HomeController extends Controller
     {
         $test=TestStudent::where('users_id',Auth::user()->id)->get();
         $groups=GroupTeacher::get();
-        return view('home',compact('test','groups'));
+        $allTests=Categories::get();
+        return view('home',compact('test','groups','allTests'));
     }
     public function update(Request $data)
     {
