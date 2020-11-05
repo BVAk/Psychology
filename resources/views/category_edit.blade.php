@@ -31,24 +31,26 @@
                     @php
                     $i = 1
                     @endphp
-                        @foreach ($questions as $question)
+                    @foreach ($questions as $question)
+                    <label for="nameThemeInput">Питання {{$i}}</label>
+                    <input type="text" name="q{{$question->id}}" class="form-control" required="" value="{{$question->question}}">
+                    <br>
+                    @foreach ($question->answer as $answer)
+                    <div class="col m-2">
+                        <input type="text" name="a{{$answer->id}}" class="form-control" style="width:90%;display:inline;" required="" value="{{$answer->answer}}">
                         @if($question->type == 'test')
-                        <label for="nameThemeInput">Питання {{$i}}</label>
-                        <input type="text" name="q{{$question->id}}" class="form-control" required="" value="{{$question->question}}">
-                        <br>
-                        @foreach ($question->answer as $answer)
-                        <div class="col m-2">
-                            <input type="text" name="a{{$answer->id}}" class="form-control" style="width:90%;display:inline;" required="" value="{{$answer->answer}}">
-                            @if($answer->correctness==1) <input class="form-check-input" checked="checked" style="float: right;margin-top: 10px;transform: scale(1.3);" type="checkbox" name="ca{{$answer->id}}" value="1" id="defaultCheck1">
-                            @else <input class="form-check-input" style="float: right;margin-top: 10px;transform: scale(1.3);" type="checkbox" name="ca{{$answer->id}}" value="1" id="defaultCheck1">
-                            @endif
-                        </div>
-                        @endforeach
-                        @php
-                        $i++
-                        @endphp
+                        @if($answer->correctness==1) <input class="form-check-input" checked="checked" style="float: right;margin-top: 10px;transform: scale(1.3);" type="checkbox" name="ca{{$answer->id}}" value="1" id="defaultCheck1">
+                        @else <input class="form-check-input" style="float: right;margin-top: 10px;transform: scale(1.3);" type="checkbox" name="ca{{$answer->id}}" value="1" id="defaultCheck1">
                         @endif
-                        @endforeach
+                        @else
+                        <input class="form-check-input" style="float: right;margin-top: 10px;transform: scale(1.3);" type="text" name="ca{{$answer->id}}" value="{{$answer->correctness}}" id="defaultCheck1">
+                        @endif
+                    </div>
+                    @endforeach
+                    @php
+                    $i++
+                    @endphp
+                    @endforeach
                     <button type="submit" name="submit" class="btn btn-info">Завершити</button>
                 </form>
             </div>
