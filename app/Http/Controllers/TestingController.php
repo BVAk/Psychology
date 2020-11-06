@@ -14,7 +14,11 @@ class TestingController extends Controller
         for ($i = 1; $i < 30; $i++) {
             $testing_mark +=$request[$i];
         }
-        TestStudent::insert( ['users_id' => Auth::user()->id, 'categories_id' => $request['category'],'mark'=>$testing_mark]);
+        $testStudent = new TestStudent();
+        $testStudent->users_id = Auth::user()->id;
+        $testStudent->categories_id = $request['category'];
+        $testStudent->mark = $testing_mark;
+        $testStudent->save();
         return redirect()->route('home');
     }
 }

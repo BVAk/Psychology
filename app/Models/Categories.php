@@ -22,4 +22,8 @@ class Categories extends Model
     public function user(){
         return $this->hasMany('App\Models\TestStudent');
     }
+    public function result()
+    {
+        return $this->hasMany('App\Models\Results');
+    }
 }

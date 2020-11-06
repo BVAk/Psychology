@@ -109,10 +109,23 @@
                                     <div class="tab-pane" id="results">
                                         <h2></h2>
                                         @forelse ($test as $mark)
-                                        <li>{{ $mark->mark }}</li>
-                                        @empty
-                                        <p> Ви ще не проходили тести</p>
-                                        @endforelse
+
+                                        @foreach($results as $result)
+                                        @if($result->categories_id==$mark->categories_id)
+                                        @if($result->from<=$mark->mark && $result->to>=$mark->mark)
+
+                                            <li>
+                                                <h1></h1>
+                                                <p>Ваш результат: {{ $mark->mark }}</p>
+                                                <p>{{ $result->text }}</p>
+                                                <small class="text-muted">{{date('Y-m-d',$result->created_at)}}</small>
+                                            </li>
+                                            @endif
+                                            @endif
+                                            @endforeach
+                                            @empty
+                                            <p> Ви ще не проходили тести</p>
+                                            @endforelse
 
                                     </div>
                                 </div>
