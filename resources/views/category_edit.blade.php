@@ -38,13 +38,7 @@
                     @foreach ($question->answer as $answer)
                     <div class="col m-2">
                         <input type="text" name="a{{$answer->id}}" class="form-control" style="width:90%;display:inline;" required="" value="{{$answer->answer}}">
-                        @if($question->type == 'test')
-                        @if($answer->correctness==1) <input class="form-check-input" checked="checked" style="float: right;margin-top: 10px;transform: scale(1.3);" type="checkbox" name="ca{{$answer->id}}" value="1" id="defaultCheck1">
-                        @else <input class="form-check-input" style="float: right;margin-top: 10px;transform: scale(1.3);" type="checkbox" name="ca{{$answer->id}}" value="1" id="defaultCheck1">
-                        @endif
-                        @else
-                        <input class="form-check-input" style="float: right;margin-top: 10px;transform: scale(1.3);" type="text" name="ca{{$answer->id}}" value="{{$answer->correctness}}" id="defaultCheck1">
-                        @endif
+                        <input class="form-check-input" style="border: 1px solid #ced4da; width: 30px;transform: scale(1.3);" type="text" name="ca{{$answer->id}}" value="{{$answer->correctness}}" id="defaultCheck1">
                     </div>
                     @endforeach
                     @php
