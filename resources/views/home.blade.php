@@ -118,7 +118,9 @@
                                                 <h1></h1>
                                                 <p>Ваш результат: {{ $mark->mark }}</p>
                                                 <p>{{ $result->text }}</p>
-                                                <small class="text-muted">{{date('Y-m-d',$result->created_at)}}</small>
+                                                <small class="text-muted">
+                                                {{ Carbon\Carbon::parse($mark->created_at)->format('d-m-Y') }}    
+                                                </small>
                                             </li>
                                             @endif
                                             @endif
