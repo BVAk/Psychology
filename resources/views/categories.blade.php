@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container bg-grey p-2">
     <div class="row justify-content-center">
         @foreach($categories as $category)
         <div class="col-md-4">

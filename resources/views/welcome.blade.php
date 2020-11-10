@@ -20,9 +20,9 @@
 <body>
     <!-- Return to Top -->
     <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
-    <div class="content bg">
+    <div class="content bg text-white">
         <nav class="navbar navbar-expand-lg navbar-light bg-light bg-tr">
-            <a class="navbar-brand" href="/">Psychology</a>
+            <a class="navbar-brand text-white" href="/">Psychology</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,20 +32,20 @@
 
                     @guest
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{route('themes.index')}}">Пройти тест</a>
+                        <a class="nav-link text-white" href="{{route('themes.index')}}">Пройти тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('login_register') }}">Увійти</a>
+                        <a class="nav-link text-white" href="{{ route('login_register') }}">Увійти</a>
                     </li>
                     @else
 
                     @if(Auth::user()->role == "client")
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{route('themes.index')}}">Пройти тест</a>
+                        <a class="nav-link text-white" href="{{route('themes.index')}}">Пройти тест</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -63,13 +63,13 @@
                     </li>
                     @elseif(Auth::user()->role == "psychologic")
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('psychologic.themes') }}">Тест</a>
+                        <a class="nav-link text-white" href="{{ route('psychologic.themes') }}">Тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('psychologic.clients') }}">Клієнти</a>
+                        <a class="nav-link text-white" href="{{ route('psychologic.clients') }}">Клієнти</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -88,18 +88,18 @@
                     @else
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{route('themes.index')}}">Мої теми</a>
+                        <a class="nav-link text-white" href="{{route('themes.index')}}">Мої теми</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/results">Результати</a>
+                        <a class="nav-link text-white" href="/results">Результати</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="dropdown-item text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 Вийти
                             </a>
@@ -150,13 +150,13 @@
         </div>
     </div>
 
-    <div class="content bg">
+    <div class="content bg text-white">
         <div class="row m-0 pt-3">
             <div class="col-md-7 m-auto">
                 <h3><b>Psychology</b></h3>
                 Тест Векслера є одним з найвідоміших тестів для вимірювання рівня інтелектуального розвитку. Тест заснований на ієрархічній моделі інтелекту Д. Векслера і діагностує загальний інтелект і його складові - вербальний і невербальний інтелекти.
             </div>
-            <div class="col-md-5 pt-5 text-center">
+            <div class="col-md-5 p-5 text-center">
                 @guest
                 <a href="/themes" class="gradient-button w-button mr-3 text-white mb-5">Тести</a>
                 @else

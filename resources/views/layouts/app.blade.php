@@ -25,7 +25,7 @@
     <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
     <div class="content bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light bg-tr">
-            <a class="navbar-brand" href="/">Psychology</a>
+            <a class="navbar-brand text-white" href="/">Psychology</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,21 +35,21 @@
 
                     @guest
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{route('themes.index')}}">Пройти тест</a>
+                        <a class="nav-link text-white" href="{{route('themes.index')}}">Пройти тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('login_register') }}">Увійти</a>
+                        <a class="nav-link text-white" href="{{ route('login_register') }}">Увійти</a>
                     </li>
                     @else
 
                     @if(Auth::user()->role == "client")
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{route('themes.index')}}">Пройти тест</a>
+                        <a class="nav-link text-white" href="{{route('themes.index')}}">Пройти тест</a>
                     </li>
                     <li class="nav-item dropdown">
 
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -67,14 +67,14 @@
                     </li>
                     @elseif(Auth::user()->role == "psychologic")
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('psychologic.themes') }}">Тест</a>
+                        <a class="nav-link text-white" href="{{ route('psychologic.themes') }}">Тест</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{ route('psychologic.clients') }}">Клієнти</a>
+                        <a class="nav-link text-white" href="{{ route('psychologic.clients') }}">Клієнти</a>
                     </li>
                     <li class="nav-item dropdown">
 
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -93,13 +93,13 @@
                     @else
 
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="{{route('themes.index')}}">Мої теми</a>
+                        <a class="nav-link text-white" href="{{route('themes.index')}}">Мої теми</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/results">Результати</a>
+                        <a class="nav-link text-white" href="/results">Результати</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -130,7 +130,7 @@
             <div class="container-fluid text-center">
                 <div class="row">
 
-                    <div class="col-sm-12 col-md-12 mb-md-0 mb-3 text-center">
+                    <div class="col-sm-12 col-md-12 mb-md-0 mb-3  text-center">
                         <h3>Pscychology</h3>
                     </div>
 

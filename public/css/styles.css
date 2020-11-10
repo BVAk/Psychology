@@ -229,10 +229,7 @@ body {
 }
 
 .bg {
-    background-image: url('../img/Background.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+    background: linear-gradient(to right, #4c2377, #FF416C);
 }
 
 .bg-v {

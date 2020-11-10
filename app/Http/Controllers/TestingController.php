@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TestingController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('auth');
+}
     public function test(Request $request)
     {
         $testing_mark=0;

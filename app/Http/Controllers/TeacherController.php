@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('auth');
+}
     public function themes()
     {
         $themes = Categories::get();

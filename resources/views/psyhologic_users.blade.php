@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container bg-grey p-2">
     <div class="row justify-content-center">
         <div class="card justify-content-center align-items-stretch">
             <div class="row"><h1>{{$group->group}}</h1></div>
