@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('themes', CategoriesController::class);
     Route::post('/themes/test', [App\Http\Controllers\TestingController::class, 'test'])->name('themes.test');
+    Route::get('/themes/result/{testing_mark}/{category}', [App\Http\Controllers\TestingController::class, 'result'])->name('test.result');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/user/edit', [App\Http\Controllers\HomeController::class, 'update'])->name('user.edit');
 
