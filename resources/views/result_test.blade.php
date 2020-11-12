@@ -12,10 +12,14 @@
                     <p>{{$categories->full_description}}</p>
                     <a href="{{route('themes.show',$categories->id)}}"> <button class="btn btn-info">Розпочати тест</button></a>
                 </div>
-                <div class="card">
-                    <h2>Ваш результат: {{ $testing_mark }}</h2>
-                    <p>{{ $results->text }}</p>
-                </div>
+                <hr>
+                    <div class="row justify-content-center">
+                        <h2>Ваш результат: {{ $testing_mark }}</h2>
+                    </div>
+                    <div class="row justify-content-center">
+                        <p>{{ $results->text }}</p>
+                    </div>
+                
             </div>
         </div>
     </div>

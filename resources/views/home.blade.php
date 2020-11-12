@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="row">
+                <div class="row m-0">
                     <h1>{{Auth::user()->surname}} {{Auth::user()->name}}</h1>
                 </div>
-                <div class="row">
+                <div class="row m-0">
                     <div class="col-sm-3">
                         <!--left col-->
                         <div class="text-center">
