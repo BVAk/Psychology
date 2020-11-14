@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             TestSeeder::class,
             AnswerSeeder::class,
             ResultSeeder::class,
+            PsychologicSeeder::class,
+            GroupSeeder::class,
+            UserSeeder::class,
+            ClientResultSeeder::class
         ]);
     }
 }

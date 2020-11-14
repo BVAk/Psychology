@@ -3,10 +3,12 @@
 @section('content')
 <div class="container bg-grey p-2">
     <div class="row justify-content-center">
-    <div class="col-md-4">
+        <div class="col-md-4">
             <div class="card mb-4 box-shadow">
-                <div class="card-img-top" >
-                    <div class="image_name"><h4>Створити новий тест</h4></div>
+                <div class="card-img-top">
+                    <div class="image_name">
+                        <h4>Створити новий тест</h4>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -20,8 +22,10 @@
         @foreach($themes as $category)
         <div class="col-md-4">
             <div class="card mb-4 box-shadow">
-                <div class="card-img-top" >
-                    <div class="image_name"><h4>{{$category->name}}</h4></div>
+                <div class="card-img-top">
+                    <div class="image_name">
+                        <h4>{{$category->name}}</h4>
+                    </div>
                 </div>
                 <div class="card-body">
                     <h4><span class="text-uppercase small">{{$category->type}}</span></h4>
