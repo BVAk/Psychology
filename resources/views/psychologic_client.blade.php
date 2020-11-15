@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="row">
+                <div class="row justify-content-center">
                     <h1>{{$user->surname}} {{$user->name}}</h1>
                 </div>
                 <div class="row">

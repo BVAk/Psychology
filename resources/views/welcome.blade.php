@@ -137,13 +137,13 @@
             <div class="col-md-3 text-center m-4 pt-3 div-box">
                 <i class="far fa-check-circle fa-5x"></i> <br>
                 <label class="pt-3"><b>Тести</b></label>
-                <label class="pt-2">11 окремих субтестів, які допоможуть стати на вірний шлях</label>
+                <label class="pt-2">Велика кількість окремих тестів, які допоможуть стати на вірний шлях</label>
 
             </div>
             <div class="col-md-3 text-center m-4 pt-3 div-box">
                 <i class="fas fa-book fa-5x"></i> <br>
                 <label class="pt-3"><b>Обробка даних</b></label>
-                <label class="pt-2">Обробка і інтерпретація результатів на трьох рівнях </label>
+                <label class="pt-2">Обробка і інтерпретація результатів на декількох рівнях </label>
 
             </div>
 
@@ -154,20 +154,10 @@
         <div class="row m-0 pt-3">
             <div class="col-md-7 m-auto">
                 <h3><b>Psychology</b></h3>
-                Тест Векслера є одним з найвідоміших тестів для вимірювання рівня інтелектуального розвитку. Тест заснований на ієрархічній моделі інтелекту Д. Векслера і діагностує загальний інтелект і його складові - вербальний і невербальний інтелекти.
+                Тест тривожного розладу, шкала оцінки потреби у досягненні, мотиваційних схвалень і багато інших тестів дозволить діагностувати не лише мотиваційну сферу і спрямованість особистості, а пізнати самого себе набагато глибше .
             </div>
             <div class="col-md-5 p-5 text-center">
-                @guest
                 <a href="/themes" class="gradient-button w-button mr-3 text-white mb-5">Тести</a>
-                @else
-                @if ( Auth::user()->role=="teacher")
-                <a href="/teacher/themes" class="gradient-button w-button mr-3 text-white mb-5">Тести</a>
-                @elseif ( Auth::user()->role=="admin")
-                @else
-                <a href="/student/themes" class="gradient-button w-button mr-3 text-white mb-5">Тести</a>
-
-                @endif
-                @endguest
             </div>
         </div>
     </div>

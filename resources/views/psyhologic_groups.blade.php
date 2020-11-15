@@ -44,6 +44,40 @@
 
             @endforelse
         </div>
+        <div class="card justify-content-center align-items-stretch mt-3">
+            <canvas id="myChart" style="width: 100%;"></canvas>
+        </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var jsondata = <?php echo $groups; ?>;
+    var values = [];
+
+    // Iterate through loop starting at position 1 
+    // (position zero has a name, not a value)
+    for (var i = 0; i < jsondata.length; i++) {
+        values.push(jsondata[i]['group']); // we end up with 12 values
+    }
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: values,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgba(0, 0, 0, 0.1',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
 @endsection
