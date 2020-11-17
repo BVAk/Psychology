@@ -45,6 +45,8 @@
             @endforelse
         </div>
         <div class="card justify-content-center align-items-stretch mt-3">
+            {{print_r($results)}}
+            <h1>Виявлення відмінностей на рівні досліджуванної ознаки </h1>
             <canvas id="myChart" style="width: 100%;"></canvas>
         </div>
     </div>
@@ -64,20 +66,40 @@
     var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
-
-        // The data for our dataset
-        data: {
-            labels: values,
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgba(0, 0, 0, 0.1',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
+    data: {
+        datasets: [{
+            type: 'line',
+            label: 'Механіки',
+            data: [10, 20, 30, 10],
+            fill: false
+        }, {
+            type: 'line',
+            label: 'Психологи',
+            data: [50, 40, 50, 30],
+            fill: false
         },
+        {
+            type: 'line',
+            label: 'Художники',
+            data: [50, 40, 50, 30],
+            fill: false
+
+            // Changes this dataset to become a line
+            
+        }],
+        labels: ['January', 'February', 'March', 'April']
+    },
 
         // Configuration options go here
-        options: {}
+        options: {
+             legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Box Plot Chart'
+            }
+        }
     });
 </script>
 @endsection

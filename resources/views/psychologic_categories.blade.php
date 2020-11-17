@@ -32,7 +32,6 @@
                     <p class="card-text">{{$category->short_description}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a class="link" href="{{route('themes.show',$category->id)}}"><button type="button" class="btn btn-sm btn-outline-secondary">Пройти тест</button></a>
                             <a class="link" href="{{route('psychologic.themes.edit',$category->id)}}"><button type="button" class="btn btn-sm btn-outline-secondary">Редагувати тест</button></a>
                         </div>
                         <small class="text-muted">{{$category->test->count()}} питань</small>
