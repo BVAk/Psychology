@@ -15,12 +15,10 @@ class GroupSeeder extends Seeder
     public function run()
     {
         DB::table('group_teacher')->insert([
-            ['users_id' => 2, 'group'=>"IT"],
-            ['users_id' => 2, 'group'=>"Economic"],
-            ['users_id' => 2, 'group'=>"Physic"],
-            ['users_id' => 1, 'group'=>"Mechanic"],
-            ['users_id' => 1, 'group'=>"Psychologic"],
-            ['users_id' => 1, 'group'=>"Artist"],
+            ['users_id' => 1, 'group'=>"IT"],
+            ['users_id' => 1, 'group'=>"Економісти"],
+            ['users_id' => 1, 'group'=>"Фізики"],
+            
         ]);
     }
 }

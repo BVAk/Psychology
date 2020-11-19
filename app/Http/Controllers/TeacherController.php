@@ -31,17 +31,17 @@ class TeacherController extends Controller
         $results = array();
         $groups = GroupTeacher::where('users_id', Auth::user()->id)->get();
         foreach ($groups as $group) {
-            $min = 0;
-            $max = 0;
+            $marks=[];
             $results[] = ($group->group);
             $clients = User::where('role', 'client')->where('group', $group->group)->get();
             foreach ($clients as $client) {
-                $clent = TestStudent::where('users_id',$client->id)->where('categories_id', 1)->first();
-                if ($client->mark < $min) $min = $client->mark;
-                else if ($client->mark > $max) $max = $client->mark;
+                $client = TestStudent::where('users_id', $client->id)->where('categories_id', 1)->first();
+                if ($client) {
+                  $marks[]=$client->mark;
+                }
             }
-            $results[$group->group][] = $min;
-            $results[$group->group][] = $min;
+            $results[$group->group][] = min($marks);
+            $results[$group->group][] = max($marks);
         }
         return view('psyhologic_groups', compact('clients', 'groups', 'results'));
     }

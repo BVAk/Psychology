@@ -17,7 +17,6 @@ class PsychologicSeeder extends Seeder
     {
         DB::table('users')->insert([
             ['name' => "Psychologic1", 'surname'=>"Іванова","role"=>"psychologic",'email' => "ivanova@gmail.com", "password" => Hash::make("1234")],
-            ['name' => "Psychologic2", 'surname'=>"Петров","role"=>"psychologic",'email' => "petrov@gmail.com", "password" => Hash::make("1234")],
         ]);
     }
 }

@@ -62,37 +62,79 @@
     for (var i = 0; i < jsondata.length; i++) {
         values.push(jsondata[i]['group']); // we end up with 12 values
     }
-
     var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
-    data: {
-        datasets: [{
-            type: 'line',
-            label: 'Механіки',
-            data: [10, 20, 30, 10],
-            fill: false
-        }, {
-            type: 'line',
-            label: 'Психологи',
-            data: [50, 40, 50, 30],
-            fill: false
-        },
-        {
-            type: 'line',
-            label: 'Художники',
-            data: [50, 40, 50, 30],
-            fill: false
+        data: {
+            datasets: [{
+                    type: 'line',
+                    label: values[0],
+                    data: [{
+                        x: 'IT',
+                        y: {{$results['IT'][0]}}
+                    }, {
+                        x: 'IT',
+                        y: {{$results['IT'][1]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(10,10,10,1)',
+                }, {
+                    type: 'line',
+                    label: values[1],
+                    data: [{
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][0]}}
+                    }, {
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][1]}}
+                    }],
+                    fill: false
+                },{
+                        type: 'line',
+                        label: 'S1',
+                        data: [{
+                                x: 'S1',
+                                y: {{$results['Економісти'][1]}}
+                            }, {
+                                x: 'S1',
+                                y: {{$results['IT'][1]}}
+                        }],
+                    fill: false
+                }, {
+                    type: 'line',
+                    label: 'S2',
+                    data: [{
+                        x: 'S1',
+                        y: {{$results['IT'][0]}}
+                    }, {
+                        x: 'S1',
+                        y: {{$results['Економісти'][0]}}
+                    }],
+                    fill: false
+                },
+                {
+                    type: 'line',
+                    label: values[2],
+                    data: [{
+                        x: 'Фізики',
+                        y: {{$results['Фізики'][0]}}
+                    }, {
+                        x: 'Фізики',
+                        y: {{$results['Фізики'][1]}}
+                    }],
+                    fill: false
 
-            // Changes this dataset to become a line
-            
-        }],
-        labels: ['January', 'February', 'March', 'April']
-    },
+                    // Changes this dataset to become a line
+
+                }
+            ],
+            labels: ['IT', 'Економісти', 'S1','S2','Фізики']
+        },
 
         // Configuration options go here
         options: {
-             legend: {
+            legend: {
                 position: 'top',
             },
             title: {
