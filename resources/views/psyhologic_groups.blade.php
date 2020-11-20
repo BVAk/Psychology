@@ -48,12 +48,16 @@
             {{print_r($results)}}
             <h1>Виявлення відмінностей на рівні досліджуванної ознаки </h1>
             <canvas id="myChart" style="width: 100%;"></canvas>
+            <canvas id="myChart2" style="width: 100%;"></canvas>
+            <canvas id="myChart3" style="width: 100%;"></canvas>
         </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx2 = document.getElementById('myChart2').getContext('2d');
+    var ctx3 = document.getElementById('myChart3').getContext('2d');
     var jsondata = <?php echo $groups; ?>;
     var values = [];
 
@@ -89,29 +93,94 @@
                         x: 'Економісти',
                         y: {{$results['Економісти'][1]}}
                     }],
-                    fill: false
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(60,179,113,1)',
                 },{
                         type: 'line',
                         label: 'S1',
                         data: [{
-                                x: 'S1',
+                                x: 'S',
                                 y: {{$results['Економісти'][1]}}
                             }, {
-                                x: 'S1',
+                                x: 'S',
                                 y: {{$results['IT'][1]}}
                         }],
-                    fill: false
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(255,0,0,1)',
                 }, {
                     type: 'line',
                     label: 'S2',
                     data: [{
-                        x: 'S1',
+                        x: 'S',
                         y: {{$results['IT'][0]}}
                     }, {
-                        x: 'S1',
+                        x: 'S',
                         y: {{$results['Економісти'][0]}}
                     }],
-                    fill: false
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(0,0,255,1)',
+            } ],
+            labels: ['IT', 'Економісти', 'S']
+        },
+
+        // Configuration options go here
+        options: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Відношення рядів значень в виборках ІТ та Економісти'
+            }
+        }
+    });
+
+var chart2 = new Chart(ctx2, {
+        // The type of chart we want to create
+        type: 'line',
+        data: {
+            datasets: [{
+                        type: 'line',
+                        label: 'S1',
+                        data: [{
+                                x: 'S',
+                                y: {{$results['Фізики'][1]}}
+                            }, {
+                                x: 'S',
+                                y: {{$results['IT'][1]}}
+                        }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(255,0,0,1)',
+                }, {
+                 type: 'line',
+                    label: 'S2',
+                    data: [{
+                        x: 'S',
+                        y: {{$results['IT'][0]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['Фізики'][0]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(0,0,255,1)',
+                },{
+                type: 'line',
+                    label: values[0],
+                    data: [{
+                        x: 'IT',
+                        y: {{$results['IT'][0]}}
+                    }, {
+                        x: 'IT',
+                        y: {{$results['IT'][1]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(10,10,10,1)',
                 },
                 {
                     type: 'line',
@@ -123,13 +192,13 @@
                         x: 'Фізики',
                         y: {{$results['Фізики'][1]}}
                     }],
-                    fill: false
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(106,90,205,1)',
 
                     // Changes this dataset to become a line
-
-                }
-            ],
-            labels: ['IT', 'Економісти', 'S1','S2','Фізики']
+                }],
+            labels: ['IT','Фізики','S']
         },
 
         // Configuration options go here
@@ -139,7 +208,84 @@
             },
             title: {
                 display: true,
-                text: 'Chart.js Box Plot Chart'
+                text: 'Відношення рядів значень в виборках ІТ та Фізики'
+            }
+        }
+    });
+
+    var chart3 = new Chart(ctx3, {
+        // The type of chart we want to create
+        type: 'line',
+        data: {
+            datasets: [{
+                    type: 'line',
+                    label: values[1],
+                    data: [{
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][0]}}
+                    }, {
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][1]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(60,179,113,1)',
+                },{
+                        type: 'line',
+                        label: 'S1',
+                        data: [{
+                                x: 'S',
+                                y: {{$results['Економісти'][1]}}
+                            }, {
+                                x: 'S',
+                                y: {{$results['Фізики'][1]}}
+                        }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(255,0,0,1)',
+                }, {
+                    type: 'line',
+                    label: 'S2',
+                    data: [{
+                        x: 'S',
+                        y: {{$results['Фізики'][0]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['Економісти'][0]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(0,0,255,1)',
+                },
+                {
+                    type: 'line',
+                    label: values[2],
+                    data: [{
+                        x: 'Фізики',
+                        y: {{$results['Фізики'][0]}}
+                    }, {
+                        x: 'Фізики',
+                        y: {{$results['Фізики'][1]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'rgba(10,10,10,1)',
+                    borderColor:'rgba(106,90,205,1)',
+
+                    // Changes this dataset to become a line
+
+                }
+            ],
+            labels: [ 'Економісти', 'Фізики','S']
+        },
+
+        // Configuration options go here
+        options: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Відношення рядів значень в виборках Фізики та Економісти'
             }
         }
     });
