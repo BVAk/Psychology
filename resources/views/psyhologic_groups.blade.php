@@ -45,11 +45,44 @@
             @endforelse
         </div>
         <div class="card justify-content-center align-items-stretch mt-3">
-            {{print_r($results)}}
             <h1>Виявлення відмінностей на рівні досліджуванної ознаки </h1>
-            <canvas id="myChart" style="width: 100%;"></canvas>
-            <canvas id="myChart2" style="width: 100%;"></canvas>
-            <canvas id="myChart3" style="width: 100%;"></canvas>
+            <h2>Чи можна стверджувати, що одна з груп перевершує іншу за
+рівнем одного з тестів?</h2>
+<p>Гіпотези:<br>
+1.Перша група не переважає другу групу за обраним тестом
+<br>
+2.Перша група переважає другу групу за обраним тестом
+</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8 mb-5"> <canvas id="myChart" style="width: 100%; height:500px;"></canvas></div>
+                <div class="col-md-6 mb-5">S1={{$results['Економісти'][1]}}-{{$results['IT'][1]}}={{abs($results['Економісти'][1]-$results['IT'][1])}}; S2={{$results['Економісти'][0]}}-{{$results['IT'][0]}}={{abs($results['Економісти'][0]-$results['IT'][0])}}
+                    <br>
+                    Qемп=S1+S2={{abs($results['Економісти'][1]-$results['IT'][1])+abs($results['Економісти'][0]-$results['IT'][0])}}
+                    <br>
+                    n1={{$results['IT'][2]}},n2={{$results['Економісти'][2]}}
+                </div>
+                <div class="col-md-6 mb-5">
+Qкр=7 при (p<=0.05)
+Qкр=9 при (p<=0.01)
+<br>
+При Qемп >= Qкр перша гіпотеза відхиляється, при Qемп <= Qкр приймається перша гіпотеза.<br>
+<b>Висновок: Студенти групи IT перевершують групу Економістів</b>
+                </div>
+                <div class="col-md-8"><canvas id="myChart2" style="width: 100%; height:500px;"></canvas></div>
+                <div class="col-md-6 mb-5">S1={{$results['Економісти'][1]}}-{{$results['Фізики'][1]}}={{abs($results['Економісти'][1]-$results['Фізики'][1])}}; S2={{$results['Економісти'][0]}}-{{$results['Фізики'][0]}}={{abs($results['Економісти'][0]-$results['Фізики'][0])}}
+                    <br>
+                    Qемп=S1+S2={{abs($results['Економісти'][1]-$results['Фізики'][1])+abs($results['Економісти'][0]-$results['Фізики'][0])}}
+                    <br>
+                    n1={{$results['Фізики'][2]}},n2={{$results['Економісти'][2]}}
+                </div>
+                <div class="col-md-6 mb-5">
+Qкр=6 при (p<=0.05)
+Qкр=9 при (p<=0.01)
+<br>
+При Qемп >= Qкр перша гіпотеза відхиляється, при Qемп <= Qкр приймається перша гіпотеза.<br>
+<b>Висновок: Студенти групи Фізиків перевершують групу Економістів</b>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -57,7 +90,6 @@
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
-    var ctx3 = document.getElementById('myChart3').getContext('2d');
     var jsondata = <?php echo $groups; ?>;
     var values = [];
 
@@ -71,64 +103,208 @@
         type: 'line',
         data: {
             datasets: [{
+                type: 'line',
+                label: values[0],
+                data: [{
+                    x: 'IT',
+                    y: {{$results['IT'][0]}}
+                }, {
+                    x: 'IT',
+                    y: {{$results['IT'][1]}}
+                }],
+                fill: false,
+                backgroundColor: 'rgba(10,10,10,1)',
+                borderColor: 'rgba(10,10,10,1)',
+            }, {
+                type: 'line',
+                label: values[1],
+                data: [{
+                    x: 'Економісти',
+                    y: {{$results['Економісти'][0]}}
+                }, {
+                    x: 'Економісти',
+                    y: {{$results['Економісти'][1]}}
+                }],
+                fill: false,
+                backgroundColor: 'rgba(60,179,113,1)',
+                borderColor: 'rgba(60,179,113,1)',
+            }, {
+                type: 'line',
+                label: 'S1',
+                data: [{
+                    x: 'S',
+                    y: {{$results['Економісти'][1]}}
+                }, {
+                    x: 'S',
+                    y: {{$results['IT'][1]}}
+                }],
+                fill: false,
+                backgroundColor: 'rgba(255,0,0,1)',
+                borderColor: 'rgba(255,0,0,1)',
+                pointStyle: 'triangle'
+            }, {
+                type: 'line',
+                label: 'S2',
+                data: [{
+                    x: 'S',
+                    y: {{$results['IT'][0]}}
+                }, {
+                    x: 'S',
+                    y: {{$results['Економісти'][0]}}
+                }],
+                fill: false,
+                backgroundColor: 'rgba(0,0,255,1)',
+                borderColor: 'rgba(0,0,255,1)',
+                pointStyle: 'triangle'
+            },
+                {
                     type: 'line',
-                    label: values[0],
+                    label: 'допоміжні лінії',
                     data: [{
                         x: 'IT',
                         y: {{$results['IT'][0]}}
                     }, {
+                        x: 'S',
+                        y: {{$results['IT'][0]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
+                    data: [{
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][0]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['Економісти'][0]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
+                    data: [{
                         x: 'IT',
+                        y: {{$results['IT'][1]}}
+                    }, {
+                        x: 'S',
                         y: {{$results['IT'][1]}}
                     }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(10,10,10,1)',
-                }, {
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
                     type: 'line',
-                    label: values[1],
+                    label: 'допоміжні лінії',
                     data: [{
                         x: 'Економісти',
-                        y: {{$results['Економісти'][0]}}
+                        y: {{$results['Економісти'][1]}}
                     }, {
-                        x: 'Економісти',
+                        x: 'S',
                         y: {{$results['Економісти'][1]}}
                     }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(60,179,113,1)',
-                },{
-                        type: 'line',
-                        label: 'S1',
-                        data: [{
-                                x: 'S',
-                                y: {{$results['Економісти'][1]}}
-                            }, {
-                                x: 'S',
-                                y: {{$results['IT'][1]}}
-                        }],
-                    fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(255,0,0,1)',
-                }, {
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15]),
+                    // Changes this dataset to become a line
+
+                },
+                {
                     type: 'line',
-                    label: 'S2',
+                    label: 'допоміжні лінії',
                     data: [{
+                        x: 'IT',
+                        y: {{$results['IT'][0]}}
+                    }, {
                         x: 'S',
                         y: {{$results['IT'][0]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
+                    data: [{
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][0]}}
                     }, {
                         x: 'S',
                         y: {{$results['Економісти'][0]}}
                     }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(0,0,255,1)',
-            } ],
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
+                    data: [{
+                        x: 'IT',
+                        y: {{$results['IT'][1]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['IT'][1]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
+                    data: [{
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][1]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['Економісти'][1]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15]),
+                    // Changes this dataset to become a line
+
+                }],
             labels: ['IT', 'Економісти', 'S']
         },
 
         // Configuration options go here
         options: {
             legend: {
+                labels: {
+                filter: function(item, chart) {
+                    // Logic to remove a particular legend item goes here
+                    return !item.text.includes('допоміжні лінії');
+                }
+            },
                 position: 'top',
             },
             title: {
@@ -138,51 +314,13 @@
         }
     });
 
-var chart2 = new Chart(ctx2, {
+ 
+
+    var chart2 = new Chart(ctx2, {
         // The type of chart we want to create
         type: 'line',
         data: {
             datasets: [{
-                        type: 'line',
-                        label: 'S1',
-                        data: [{
-                                x: 'S',
-                                y: {{$results['Фізики'][1]}}
-                            }, {
-                                x: 'S',
-                                y: {{$results['IT'][1]}}
-                        }],
-                    fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(255,0,0,1)',
-                }, {
-                 type: 'line',
-                    label: 'S2',
-                    data: [{
-                        x: 'S',
-                        y: {{$results['IT'][0]}}
-                    }, {
-                        x: 'S',
-                        y: {{$results['Фізики'][0]}}
-                    }],
-                    fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(0,0,255,1)',
-                },{
-                type: 'line',
-                    label: values[0],
-                    data: [{
-                        x: 'IT',
-                        y: {{$results['IT'][0]}}
-                    }, {
-                        x: 'IT',
-                        y: {{$results['IT'][1]}}
-                    }],
-                    fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(10,10,10,1)',
-                },
-                {
                     type: 'line',
                     label: values[2],
                     data: [{
@@ -193,31 +331,12 @@ var chart2 = new Chart(ctx2, {
                         y: {{$results['Фізики'][1]}}
                     }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(106,90,205,1)',
+                    backgroundColor: 'rgba(106,90,205,1)',
+                    borderColor: 'rgba(106,90,205,1)',
 
                     // Changes this dataset to become a line
-                }],
-            labels: ['IT','Фізики','S']
-        },
 
-        // Configuration options go here
-        options: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Відношення рядів значень в виборках ІТ та Фізики'
-            }
-        }
-    });
-
-    var chart3 = new Chart(ctx3, {
-        // The type of chart we want to create
-        type: 'line',
-        data: {
-            datasets: [{
+                }, {
                     type: 'line',
                     label: values[1],
                     data: [{
@@ -228,21 +347,23 @@ var chart2 = new Chart(ctx2, {
                         y: {{$results['Економісти'][1]}}
                     }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(60,179,113,1)',
-                },{
-                        type: 'line',
-                        label: 'S1',
-                        data: [{
-                                x: 'S',
-                                y: {{$results['Економісти'][1]}}
-                            }, {
-                                x: 'S',
-                                y: {{$results['Фізики'][1]}}
-                        }],
+                    backgroundColor: 'rgba(60,179,113,1)',
+                    borderColor: 'rgba(60,179,113,1)',
+                },
+                {
+                    type: 'line',
+                    label: 'S1',
+                    data: [{
+                        x: 'S',
+                        y: {{$results['Економісти'][1]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['Фізики'][1]}}
+                    }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(255,0,0,1)',
+                    backgroundColor: 'rgba(255,0,0,1)',
+                    borderColor: 'rgba(255,0,0,1)',
+                    pointStyle: 'triangle'
                 }, {
                     type: 'line',
                     label: 'S2',
@@ -254,33 +375,91 @@ var chart2 = new Chart(ctx2, {
                         y: {{$results['Економісти'][0]}}
                     }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(0,0,255,1)',
+                    backgroundColor: 'rgba(0,0,255,1)',
+                    borderColor: 'rgba(0,0,255,1)',
+                    pointStyle: 'triangle'
                 },
                 {
                     type: 'line',
-                    label: values[2],
+                    label: 'допоміжні лінії',
+                    data: [{
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][0]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['Економісти'][0]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
                     data: [{
                         x: 'Фізики',
                         y: {{$results['Фізики'][0]}}
                     }, {
+                        x: 'S',
+                        y: {{$results['Фізики'][0]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
+                    data: [{
+                        x: 'Економісти',
+                        y: {{$results['Економісти'][1]}}
+                    }, {
+                        x: 'S',
+                        y: {{$results['Економісти'][1]}}
+                    }],
+                    fill: false,
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15])
+                    // Changes this dataset to become a line
+
+                },
+                {
+                    type: 'line',
+                    label: 'допоміжні лінії',
+                    data: [{
                         x: 'Фізики',
+                        y: {{$results['Фізики'][1]}}
+                    }, {
+                        x: 'S',
                         y: {{$results['Фізики'][1]}}
                     }],
                     fill: false,
-                    backgroundColor: 'rgba(10,10,10,1)',
-                    borderColor:'rgba(106,90,205,1)',
-
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    borderDash:([5, 15]),
                     // Changes this dataset to become a line
 
                 }
             ],
-            labels: [ 'Економісти', 'Фізики','S']
+            labels: [ 'Фізики', 'Економісти', 'S']
         },
 
         // Configuration options go here
         options: {
             legend: {
+                labels: {
+                filter: function(item, chart) {
+                    // Logic to remove a particular legend item goes here
+                    return !item.text.includes('допоміжні лінії');
+                }
+            },
                 position: 'top',
             },
             title: {

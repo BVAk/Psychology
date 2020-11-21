@@ -115,7 +115,9 @@
                                         @if($result->from<=$mark->mark && $result->to>=$mark->mark)
 
                                             <li>
-                                                <h1></h1>
+                                                <p><?php
+                                                $categor=DB::table('Categories')->where('id','=',$result->categories_id)->first()?>
+                                                {{$categor->name}}</p>
                                                 <p>Ваш результат: {{ $mark->mark }}</p>
                                                 <p>{{ $result->text }}</p>
                                                 <small class="text-muted">

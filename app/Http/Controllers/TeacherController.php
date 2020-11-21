@@ -33,15 +33,18 @@ class TeacherController extends Controller
         foreach ($groups as $group) {
             $marks=[];
             $results[] = ($group->group);
+            $count=0;
             $clients = User::where('role', 'client')->where('group', $group->group)->get();
             foreach ($clients as $client) {
                 $client = TestStudent::where('users_id', $client->id)->where('categories_id', 1)->first();
                 if ($client) {
                   $marks[]=$client->mark;
+                  $count++;
                 }
             }
             $results[$group->group][] = min($marks);
             $results[$group->group][] = max($marks);
+            $results[$group->group][] = $count;
         }
         return view('psyhologic_groups', compact('clients', 'groups', 'results'));
     }

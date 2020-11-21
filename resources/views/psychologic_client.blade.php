@@ -6,17 +6,20 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="row justify-content-center">
-                    <h1>{{$user->surname}} {{$user->name}}</h1>
+                   <div class="col-md-8 justify-content-center"> <h1>{{$user->surname}} {{$user->name}}</h1></div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <h1> Результати:</h1>
+                    <div class="col-md-8 justify-content-center"">
                         <ol>@foreach ($test as $mark)
 
                             @foreach($results as $result)
                             @if($result->categories_id==$mark->categories_id)
                             @if($result->from<=$mark->mark && $result->to>=$mark->mark)
                                 <li>
-                                    <h1></h1>
+                                    <p><?php
+                                        $categor = DB::table('Categories')->where('id', '=', $result->categories_id)->first() ?>
+                                        {{$categor->name}}</p>
                                     <p>Результат: {{ $mark->mark }}</p>
                                     <p>{{ $result->text }}</p>
                                     <small class="text-muted">
