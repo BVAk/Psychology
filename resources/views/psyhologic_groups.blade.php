@@ -45,14 +45,17 @@
             @endforelse
         </div>
         <div class="card justify-content-center align-items-stretch mt-3">
-            <h1>Виявлення відмінностей на рівні досліджуванної ознаки </h1>
-            <h2>Чи можна стверджувати, що одна з груп перевершує іншу за
-рівнем одного з тестів?</h2>
-<p>Гіпотези:<br>
+            <h3>Виявлення відмінностей на рівні досліджуванної ознаки </h3>
+            Чи можна стверджувати, що одна з груп перевершує іншу за рівнем одного з тестів?
+        </div>
+        <div class="card justify-content-center align-items-stretch mt-3">
+            <h3 class="m-auto">Критерій Розенбаума</h3>
+            <br>
+Гіпотези:<br>
 1.Перша група не переважає другу групу за обраним тестом
 <br>
 2.Перша група переважає другу групу за обраним тестом
-</p>
+
             <div class="row justify-content-center">
                 <div class="col-md-8 mb-5"> <canvas id="myChart" style="width: 100%; height:500px;"></canvas></div>
                 <div class="col-md-6 mb-5">S1={{$results['Економісти'][1]}}-{{$results['IT'][1]}}={{abs($results['Економісти'][1]-$results['IT'][1])}}; S2={{$results['Економісти'][0]}}-{{$results['IT'][0]}}={{abs($results['Економісти'][0]-$results['IT'][0])}}
@@ -83,6 +86,54 @@ Qкр=9 при (p<=0.01)
 <b>Висновок: Студенти групи Фізиків перевершують групу Економістів</b>
                 </div>
             </div>
+        </div>
+        <div class="card justify-content-center align-items-stretch mt-3">
+            <h3>Розрахунок критерія U Манна-Уітні </h3>
+            <br>
+            Критерій потрібен для оцінки відмінностей між двома вибірками за рівнем якої-небудь ознаки, кількісно виміряного
+            <table class="table table-bordered">
+                <th colspan="2">IT</th><th colspan="2">Фізики</th>
+                <tr><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td></tr>
+                <tr></tr>
+            @for($i=1;$i<=count($mark)-1;$i++)
+            <?php $user=DB::table('Users')->where('id','=',$userId[$i])->first()?>
+@if ($user->group=='IT')
+            <tr>
+            
+            <td>{{$mark[$i]}}</td>
+<td> {{$rang[$i]}} </td>
+<td></td>
+<td></td>
+</tr>
+@elseif($user->group=='Фізики')
+<tr>
+
+<td></td>
+<td></td>
+<td>{{$mark[$i]}}</td>
+<td> {{$rang[$i]}} </td>
+</tr>
+@endif
+@endfor
+            </table>
+            <table class="table table-bordered">
+<tr><td></td><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td></tr>
+<tr><td>Сума:</td><td>{{$sumMarkIT}}</td><td>{{$sumRangIT}}</td><td>{{$sumMarkPhysic}}</td><td>{{$sumRangPhysic}}</td></tr>
+<tr><td>Cереднє</td><td>{{$sumMarkIT/$countIT}}</td><td></td><td>{{$sumMarkPhysic/$countPhysic}}</td><td></td></tr>
+            </table>
+            <br>
+            <p>Загальна сума рангів: {{$sumRangIT+$sumRangPhysic}}<br>
+            Гіпотези:
+            <br>
+            1. Група Фізиків не перевершує групу ІТ.<br>
+            2. Група Фізиків перевершує групу ІТ.
+            <br>
+            Емперична величина Uемп=({{$countIT}}*{{$countPhysic}})+({{$countPhysic}}*({{$countPhysic}}+1))/2-{{$sumRangPhysic}}={{($countIT*$countPhysic)+(($countPhysic*($countPhysic+1))/2)-$sumRangPhysic}}<br>
+            Емперична величина Uемп=({{$countIT}}*{{$countPhysic}})+({{$countIT}}*({{$countIT}}+1))/2-{{$sumRangIT}}={{($countIT*$countPhysic)+(($countIT*($countIT+1))/2)-$sumRangIT}}<br>
+            Uкр=95 при p<=0.05, 76 при (p<=0.01)
+            <br>
+            <b> Висновок: Гіпотеза 1 приймається, група фізиків не перевершує групу ІТ.</b>
+        </p>
         </div>
     </div>
 </div>
