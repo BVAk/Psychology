@@ -49,13 +49,18 @@
             Чи можна стверджувати, що одна з груп перевершує іншу за рівнем одного з тестів?
         </div>
         <div class="card justify-content-center align-items-stretch mt-3">
-            <h3 class="m-auto">Критерій Розенбаума</h3>
-            <br>
-Гіпотези:<br>
-1.Перша група не переважає другу групу за обраним тестом
-<br>
-2.Перша група переважає другу групу за обраним тестом
-
+        
+        <h3 class="m-auto">Критерій Розенбаума</h3>
+        <br>
+        
+        
+            Гіпотези:<br>
+        
+                1.Перша група не переважає другу групу за обраним тестом - "Шкала оцінки потреби у досягненні"
+                <br>
+                2.Перша група переважає другу групу за обраним тестом - "Шкала оцінки потреби у досягненні"
+                <br>
+        
             <div class="row justify-content-center">
                 <div class="col-md-8 mb-5"> <canvas id="myChart" style="width: 100%; height:500px;"></canvas></div>
                 <div class="col-md-6 mb-5">S1={{$results['Економісти'][1]}}-{{$results['IT'][1]}}={{abs($results['Економісти'][1]-$results['IT'][1])}}; S2={{$results['Економісти'][0]}}-{{$results['IT'][0]}}={{abs($results['Економісти'][0]-$results['IT'][0])}}
@@ -65,11 +70,11 @@
                     n1={{$results['IT'][2]}},n2={{$results['Економісти'][2]}}
                 </div>
                 <div class="col-md-6 mb-5">
-Qкр=7 при (p<=0.05)
-Qкр=9 при (p<=0.01)
-<br>
-При Qемп >= Qкр перша гіпотеза відхиляється, при Qемп <= Qкр приймається перша гіпотеза.<br>
-<b>Висновок: Студенти групи IT перевершують групу Економістів</b>
+                    Qкр=7 при (p<=0.05)
+                    Qкр=9 при (p<=0.01)
+                    <br>
+                    При Qемп >= Qкр перша гіпотеза відхиляється, при Qемп <= Qкр приймається перша гіпотеза.<br>
+                    <b>Висновок: Студенти групи IT перевершують групу Економістів</b>
                 </div>
                 <div class="col-md-8"><canvas id="myChart2" style="width: 100%; height:500px;"></canvas></div>
                 <div class="col-md-6 mb-5">S1={{$results['Економісти'][1]}}-{{$results['Фізики'][1]}}={{abs($results['Економісти'][1]-$results['Фізики'][1])}}; S2={{$results['Економісти'][0]}}-{{$results['Фізики'][0]}}={{abs($results['Економісти'][0]-$results['Фізики'][0])}}
@@ -79,19 +84,25 @@ Qкр=9 при (p<=0.01)
                     n1={{$results['Фізики'][2]}},n2={{$results['Економісти'][2]}}
                 </div>
                 <div class="col-md-6 mb-5">
-Qкр=6 при (p<=0.05)
-Qкр=9 при (p<=0.01)
-<br>
-При Qемп >= Qкр перша гіпотеза відхиляється, при Qемп <= Qкр приймається перша гіпотеза.<br>
-<b>Висновок: Студенти групи Фізиків перевершують групу Економістів</b>
+                    Qкр=6 при (p<=0.05)
+                    Qкр=9 при (p<=0.01)
+                    <br>
+                    При Qемп >= Qкр перша гіпотеза відхиляється, при Qемп <= Qкр приймається перша гіпотеза.<br>
+                    <b>Висновок: Студенти групи Фізиків перевершують групу Економістів</b>
                 </div>
             </div>
         </div>
         <div class="card justify-content-center align-items-stretch mt-3">
-            <h3>Розрахунок критерія U Манна-Уітні </h3>
+        <div class="row col-md-10 justify-content-center">
+            <h3 class="m-auto ">Розрахунок критерія U Манна-Уітні </h3>
             <br>
             Критерій потрібен для оцінки відмінностей між двома вибірками за рівнем якої-небудь ознаки, кількісно виміряного
-            <table class="table table-bordered">
+            <br>
+            тест "Опитувальник генералізованого тривожного розладу"
+            <br>
+        </div>
+            
+            <table class="table table-bordered justify-content-center col-md-8">
                 <th colspan="2">IT</th><th colspan="2">Фізики</th>
                 <tr><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td></tr>
                 <tr></tr>
@@ -99,7 +110,6 @@ Qкр=9 при (p<=0.01)
             <?php $user=DB::table('Users')->where('id','=',$userId[$i])->first()?>
 @if ($user->group=='IT')
             <tr>
-            
             <td>{{$mark[$i]}}</td>
 <td> {{$rang[$i]}} </td>
 <td></td>
@@ -116,11 +126,14 @@ Qкр=9 при (p<=0.01)
 @endif
 @endfor
             </table>
-            <table class="table table-bordered">
-<tr><td></td><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td></tr>
+            
+            
+            <table class="table table-bordered justify-content-center col-md-8">
+<tr><td></td><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td><td>Квадрат різниці</td></tr>
 <tr><td>Сума:</td><td>{{$sumMarkIT}}</td><td>{{$sumRangIT}}</td><td>{{$sumMarkPhysic}}</td><td>{{$sumRangPhysic}}</td></tr>
 <tr><td>Cереднє</td><td>{{$sumMarkIT/$countIT}}</td><td></td><td>{{$sumMarkPhysic/$countPhysic}}</td><td></td></tr>
             </table>
+    
             <br>
             <p>Загальна сума рангів: {{$sumRangIT+$sumRangPhysic}}<br>
             Гіпотези:
@@ -133,6 +146,55 @@ Qкр=9 при (p<=0.01)
             Uкр=95 при p<=0.05, 76 при (p<=0.01)
             <br>
             <b> Висновок: Гіпотеза 1 приймається, група фізиків не перевершує групу ІТ.</b>
+        </p>
+        </div>
+
+        <div class="card justify-content-center align-items-stretch mt-3">
+            <h3 class="m-auto">Рангова кореляція</h3>
+            <br>
+            <div class="row">
+           Кореляція між двума показниками, тесту "Рівень реактивної тривоги" та "Особистісна тривога"
+           <br>
+            Гіпотези:
+            <br>
+            1. Кореляція між показниками двух тестів не відрізняється від 0.<br>
+            2. Кореляція між показниками двух тестів відрізняється від 0
+            </div>
+            
+            <table class="table table-bordered justify-content-center col-md-8">
+                <th colspan="2">Рівень реактивної тривоги</th><th colspan="2">Особистісна тривога</th>
+                <tr><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td><td>Різниця</td><td>Квадрат різниці</td></tr>
+                <tr></tr>
+                <?php $sum=0 ?>
+            @for($i=1;$i<=count($markCor)-1;$i++)
+            <?php $user=DB::table('Users')->where('id','=',$userCorId[$i])->first()?>
+            <tr>
+            
+            <td>{{$markCor[$i]}}</td>
+<td> {{$rangCor[$i]}} </td>
+<td>{{$markCor2[$i]}}</td>
+<td> {{$rangCor2[$i]}} </td>
+<td>{{$rangCor[$i]-$rangCor2[$i]}}</td>
+<td>{{($rangCor[$i]-$rangCor2[$i])*($rangCor[$i]-$rangCor2[$i])}}</td>
+<?php $sum=$sum+($rangCor[$i]-$rangCor2[$i])*($rangCor[$i]-$rangCor2[$i]) ?>
+</tr>
+@endfor
+            </table>   
+        <div class="row">
+            <table class="table table-bordered justify-content-center col-md-8">
+<tr><td></td><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td><td>Квадрат різниці</td></tr>
+<tr><td>Сума:</td><td></td><td>{{array_sum($rangCor)}}</td><td></td><td>{{array_sum($rangCor2)}}</td><td>{{$sum}}</td></tr>
+
+            </table>
+        </div>
+            <br>
+            <p>Коефіцієнт рангової кореляції: <br>
+            r емп.=1-(6*{{$sum}})/({{count($rangCor)}}*({{count($rangCor)}}^2-1))={{1-(6*$sum)/(count($rangCor)*(count($rangCor)^2-1))}}
+            <br>
+            r кр.=0.36 при (p<=0.05) та 0.47 при (p<=0.01)
+              <br>
+           
+            <b> Висновок: Гіпотеза 1 не приймається, кореляція між показниками двух тестів значима і є додатньою, відрізняється від 0 </b>
         </p>
         </div>
     </div>

@@ -30,7 +30,8 @@ class TeacherController extends Controller
     {
         $results = array();
         $groups = GroupTeacher::where('users_id', Auth::user()->id)->get();
-        foreach ($groups as $group) {
+        $groupCount = GroupTeacher::where('group','IT')->orWhere('group','Економісти')->orWhere('group','Фізики')->get();
+        foreach ($groupCount as $group) {
             $marks = [];
             $results[] = ($group->group);
             $mark = [];
@@ -44,8 +45,6 @@ class TeacherController extends Controller
                 if ($client) {
                     $marks[] = $client->mark;
                     $count++;
-
-                    
                 }
             }
             foreach ($marksTotal as $markOne) {
@@ -120,6 +119,110 @@ class TeacherController extends Controller
             }
         }
 
+        $markCor = [];
+        $userCorId = [];
+        $rangCor = [];
+        $countCor = 0;
+        $marksCorTotal = TestStudent::where('categories_id', 4)->orderBy('mark')->paginate(30);
+        foreach ($marksCorTotal as $markOne) {
+            if (User::where('id',$markOne->user_id)->where('group','IT')) {                
+            $markCor[] = $markOne->mark;
+            $userCorId[] = $markOne->users_id;
+            }
+        }
+        $rangCorcount = 0;
+        $countCorrepeat = 1;
+        $changeCor = 1;
+        for ($i = 0; $i < count($markCor); $i++) {
+            $next = 0;
+            if (($i + 1) < count($markCor)) {
+                $next = $i + 1;
+            }
+            if ($markCor[$i] == $markCor[$next]) {
+                $countCorrepeat = $countCorrepeat + 1;
+                $changeCor = $changeCor + 1;
+                $rangCorcount = $rangCorcount + 1;
+                $rangCor[$i] = $rangCorcount + 1;
+            } else {
+                $rangCor[$i] = $rangCorcount + 1;
+
+                $j = $i;
+                while ($countCorrepeat > 1) {
+                    $j = $j - 1;
+                    $countCorrepeat = $countCorrepeat - 1;
+                }
+                $result_rang = ($rangCor[$i] + $rangCor[$j]) / 2;
+                $j = $i;
+                $rangCor[$j] = $result_rang;
+                while ($changeCor > 1) {
+                    $j = $j - 1;
+                    $rangCor[$j] = $result_rang;
+                    $changeCor = $changeCor - 1;
+                }
+                $countCorrepeat = 1;
+                $changeCor = 1;
+                $rangCorcount = $rangCorcount + 1;
+            }
+        }
+        $clientsCorIT = User::where('role', 'client')->where('group', 'IT')->get();
+        $countCorIT = 0;
+        $sumRangCorIT = 0;
+        $sumMarkCorIT = 0;
+        foreach ($clientsCorIT as $client) {
+            for ($i = 1; $i <= count($markCor) - 1; $i++) {
+                if ($client->id == $userCorId[$i]) {
+                    $sumMarkCorIT = $sumMarkCorIT + $markCor[$i];
+                    $sumRangCorIT = $sumRangCorIT + $rangCor[$i];
+                    $countCorIT++;
+                }
+            }
+        }
+        $markCor2 = [];
+        $userCorId2 = [];
+        $rangCor2 = [];
+        $countCor2 = 0;
+        $marksCorTotal2 = TestStudent::where('categories_id', 5)->orderBy('mark')->paginate(30);
+        foreach ($marksCorTotal2 as $markOne) {
+            if (User::where('id',$markOne->user_id)->where('group','IT')) {                
+            $markCor2[] = $markOne->mark;
+            $userCorId2[] = $markOne->users_id;
+            }
+        }
+        $rangCorcount2 = 0;
+        $countCorrepeat2 = 1;
+        $changeCor2 = 1;
+        for ($i = 0; $i < count($markCor2); $i++) {
+            $next = 0;
+            if (($i + 1) < count($markCor2)) {
+                $next = $i + 1;
+            }
+            if ($markCor2[$i] == $markCor2[$next]) {
+                $countCorrepeat2 = $countCorrepeat2 + 1;
+                $changeCor2 = $changeCor2 + 1;
+                $rangCorcount2 = $rangCorcount2 + 1;
+                $rangCor2[$i] = $rangCorcount2 + 1;
+            } else {
+                $rangCor2[$i] = $rangCorcount2 + 1;
+
+                $j = $i;
+                while ($countCorrepeat2 > 1) {
+                    $j = $j - 1;
+                    $countCorrepeat2 = $countCorrepeat2 - 1;
+                }
+                $result_rang = ($rangCor2[$i] + $rangCor2[$j]) / 2;
+                $j = $i;
+                $rangCor2[$j] = $result_rang;
+                while ($changeCor2 > 1) {
+                    $j = $j - 1;
+                    $rangCor2[$j] = $result_rang;
+                    $changeCor2 = $changeCor2 - 1;
+                }
+                $countCorrepeat2 = 1;
+                $changeCor2 = 1;
+                $rangCorcount2 = $rangCorcount2 + 1;
+            }
+        }
+       
         return view('psyhologic_groups', compact(
             'clients',
             'groups',
@@ -127,8 +230,20 @@ class TeacherController extends Controller
             'mark',
             'rang',
             'userId',
+            'markCor',
+            'markCor2',
+            'rangCor',
+            'rangCor2',
+            'userCorId',
+            'userCorId2',
             'sumMarkIT',
             'sumRangIT',
+            'countIT',
+            'sumMarkIT',
+            'sumRangIT',
+            'countCorIT',
+            'sumMarkCorIT',
+            'sumRangCorIT',
             'countIT',
             'sumMarkPhysic',
             'sumRangPhysic',
