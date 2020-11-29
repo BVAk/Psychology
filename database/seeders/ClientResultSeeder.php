@@ -16,10 +16,10 @@ class ClientResultSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::where('role', 'client')->get();
+        $users = User::where('role', 'client')->where('group','IT')->get();
         foreach ($users as $user) {
             DB::table('teststudent')->insert([
-                ['users_id' => $user->id, 'categories_id' => rand(1,Categories::count()),'mark'=>rand(1,21)]
+                ['users_id' => $user->id, 'categories_id' => 3,'mark'=>rand(1,21)]
             ]);
         }
     }

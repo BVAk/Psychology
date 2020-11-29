@@ -30,7 +30,7 @@ class TeacherController extends Controller
     {
         $results = array();
         $groups = GroupTeacher::where('users_id', Auth::user()->id)->get();
-        $groupCount = GroupTeacher::where('group','IT')->orWhere('group','Економісти')->orWhere('group','Фізики')->get();
+        $groupCount = GroupTeacher::where('group', 'IT')->orWhere('group', 'Економісти')->orWhere('group', 'Фізики')->get();
         foreach ($groupCount as $group) {
             $marks = [];
             $results[] = ($group->group);
@@ -48,9 +48,9 @@ class TeacherController extends Controller
                 }
             }
             foreach ($marksTotal as $markOne) {
-                if (User::where('id',$markOne->user_id)->where('group','IT')->orWhere('group', 'Фізики')) {                
-                $mark[] = $markOne->mark;
-                $userId[] = $markOne->users_id;
+                if (User::where('id', $markOne->user_id)->where('group', 'IT')->orWhere('group', 'Фізики')) {
+                    $mark[] = $markOne->mark;
+                    $userId[] = $markOne->users_id;
                 }
             }
             $rangcount = 0;
@@ -125,9 +125,9 @@ class TeacherController extends Controller
         $countCor = 0;
         $marksCorTotal = TestStudent::where('categories_id', 4)->orderBy('mark')->paginate(30);
         foreach ($marksCorTotal as $markOne) {
-            if (User::where('id',$markOne->user_id)->where('group','IT')) {                
-            $markCor[] = $markOne->mark;
-            $userCorId[] = $markOne->users_id;
+            if (User::where('id', $markOne->user_id)->where('group', 'IT')) {
+                $markCor[] = $markOne->mark;
+                $userCorId[] = $markOne->users_id;
             }
         }
         $rangCorcount = 0;
@@ -179,18 +179,17 @@ class TeacherController extends Controller
         }
         $markCor2 = [];
         $userCorId2 = [];
-        $rangCor2 = [];
-        $countCor2 = 0;
-        $marksCorTotal2 = TestStudent::where('categories_id', 5)->orderBy('mark')->paginate(30);
-        foreach ($marksCorTotal2 as $markOne) {
-            if (User::where('id',$markOne->user_id)->where('group','IT')) {                
-            $markCor2[] = $markOne->mark;
-            $userCorId2[] = $markOne->users_id;
-            }
-        }
+        $rangCor2 = [];       
         $rangCorcount2 = 0;
         $countCorrepeat2 = 1;
         $changeCor2 = 1;
+        $marksCorTotal2 = TestStudent::where('categories_id', 5)->orderBy('mark')->paginate(30);
+        foreach ($marksCorTotal2 as $markOne) {
+            if (User::where('id', $markOne->user_id)->where('group', 'IT')) {
+                $markCor2[] = $markOne->mark;
+                $userCorId2[] = $markOne->users_id;
+            }
+        }
         for ($i = 0; $i < count($markCor2); $i++) {
             $next = 0;
             if (($i + 1) < count($markCor2)) {
@@ -222,18 +221,73 @@ class TeacherController extends Controller
                 $rangCorcount2 = $rangCorcount2 + 1;
             }
         }
-       
+        $usersDouble = User::where('group', 'IT')->get();
+        foreach ($usersDouble as $user) {
+            $marksDouble1 = TestStudent::where('categories_id', 3)->where('users_id', $user->id)->orderBy('created_at')->first();
+            $marksDouble2 = TestStudent::where('categories_id', 3)->where('users_id', $user->id)->orderBy('created_at', 'DESC')->first();
+            if ($marksDouble1) {
+                if ($marksDouble1->id != $marksDouble2->id) {
+                    $user11[] = $user->name;
+                    $mark1[] = $marksDouble1->mark;
+                    $mark2[] = $marksDouble2->mark;
+                    $markdiff[1][$i]=abs($marksDouble1->mark-$marksDouble2->mark);
+                    $markdiff[0][$i]=$i;
+                }
+            }
+        }
+        $rangDD=array();
+        $rangDouble = 0;
+        $countrepeatDouble = 1;
+        $changeDouble = 1;
+        for ($i = 0; $i < count($markdiff[1])-1; $i++) {
+            $next = 0;
+            if (($i + 1) < count($markdiff[1])-1) {
+                $next = $i + 1;
+            }
+            if ($markdiff[1][$i] == $markdiff[1][$next]) {
+                $countrepeatDouble = $countrepeatDouble + 1;
+                $changeDouble = $changeDouble + 1;
+                $rangDouble = $rangDouble + 1;
+                $rangDD[0][$i]=$markdiff[0][$i];
+                $rangDD[1][$i] = $rangDouble + 1;
+            } else {
+                $rangDD[1][$i] = $rangDouble + 1;
+
+                $j = $i;
+                while ($countrepeatDouble > 1) {
+                    $j = $j - 1;
+                    $countrepeatDouble = $countrepeatDouble - 1;
+                }
+                $result_rang = ($rangDD[1][$i] + $rangDD[1][$j]) / 2;
+                $j = $i;
+                $rangDD[1][$j] = $result_rang;
+                while ($changeDouble > 1) {
+                    $j = $j - 1;
+                    $rangDD[1][$j] = $result_rang;
+                    $changeDouble = $changeDouble - 1;
+                }
+                $countrepeatDouble = 1;
+                $changeDouble = 1;
+                $rangDouble = $rangDouble + 1;
+            }
+        }
+    
         return view('psyhologic_groups', compact(
+            'user11',
+            'mark1',
+            'mark2',
             'clients',
             'groups',
             'results',
             'mark',
             'rang',
+            'markdiff',
             'userId',
             'markCor',
             'markCor2',
             'rangCor',
             'rangCor2',
+            'rangDD',
             'userCorId',
             'userCorId2',
             'sumMarkIT',
@@ -247,7 +301,10 @@ class TeacherController extends Controller
             'countIT',
             'sumMarkPhysic',
             'sumRangPhysic',
-            'countPhysic'
+            'countPhysic',
+            'usersDouble',
+            'marksDouble1',
+            'marksDouble2'
         ));
     }
     public function groupShow($group)

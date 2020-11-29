@@ -198,6 +198,42 @@
         </p>
         </div>
     </div>
+    <div class="card justify-content-center align-items-stretch mt-3">
+            <h3>Оцінка здвигу значень досліджуванного показника</h3>
+            Чи можна стверджувати, що одна з груп перевершує іншу за рівнем одного з тестів?
+        </div>
+        <div class="card justify-content-center align-items-stretch mt-3">
+        <div class="row">
+            <div class="col-md-12">
+        <h3 class="m-auto">Критерій Вілкоксона</h3>
+        <br>
+        </div>
+        </div>
+            <div class="row">
+            <div class="col-md-12">
+           Порівняння показників групи ІТ, перед і після проходження психологічного курсу - тест "Шкала оцінки мотивації схвалення"
+           <br>
+            Гіпотези:
+            <br>
+            1. Інтенисивність сдвигів в бік зменшення показників не перевершує інтенсивність сдвигів в бік збельшення показників.<br>
+            2. Інтенисивність сдвигів в бік зменшення показників перевершує інтенсивність сдвигів в бік збельшення показників.
+            <br>    
+        </div>
+        {{print_r($markdiff)}}
+        {{print_r($rangDD)}}
+            </div>
+        <table class="table table-bordered justify-content-center col-md-8">
+            <tr><td></td><td></td><td></td><td></td></tr>
+            @for($i=0;$i<count($user11);$i++)
+            <tr> <td>{{$user11[$i]}}</td>
+            <td>{{$mark1[$i]}}</td>
+            <td>{{$mark2[$i]}}</td>
+            <td>{{abs($mark1[$i]-$mark2[$i])}}</td>
+            <td></td></tr>
+            @endfor
+        </table>
+        </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
