@@ -222,7 +222,9 @@ class TeacherController extends Controller
             }
         }
         $usersDouble = User::where('group', 'IT')->get();
+        
         foreach ($usersDouble as $user) {
+            
             $marksDouble1 = TestStudent::where('categories_id', 3)->where('users_id', $user->id)->orderBy('created_at')->first();
             $marksDouble2 = TestStudent::where('categories_id', 3)->where('users_id', $user->id)->orderBy('created_at', 'DESC')->first();
             if ($marksDouble1) {
@@ -230,40 +232,40 @@ class TeacherController extends Controller
                     $user11[] = $user->name;
                     $mark1[] = $marksDouble1->mark;
                     $mark2[] = $marksDouble2->mark;
-                    $markdiff[1][$i]=abs($marksDouble1->mark-$marksDouble2->mark);
-                    $markdiff[0][$i]=$i;
+                    $markdiff[]=abs($marksDouble1->mark-$marksDouble2->mark);
                 }
             }
         }
+        array_multisort($markdiff,$user11,$mark1,$mark2);
         $rangDD=array();
         $rangDouble = 0;
         $countrepeatDouble = 1;
         $changeDouble = 1;
-        for ($i = 0; $i < count($markdiff[1])-1; $i++) {
+        for ($i = 0; $i < count($markdiff); $i++) {
             $next = 0;
-            if (($i + 1) < count($markdiff[1])-1) {
+            if (($i + 1) < count($markdiff)) {
                 $next = $i + 1;
             }
-            if ($markdiff[1][$i] == $markdiff[1][$next]) {
+            if ($markdiff[$i] == $markdiff[$next]) {
                 $countrepeatDouble = $countrepeatDouble + 1;
                 $changeDouble = $changeDouble + 1;
                 $rangDouble = $rangDouble + 1;
-                $rangDD[0][$i]=$markdiff[0][$i];
-                $rangDD[1][$i] = $rangDouble + 1;
+                $rangDD[$i]=$markdiff[$i];
+                $rangDD[$i] = $rangDouble + 1;
             } else {
-                $rangDD[1][$i] = $rangDouble + 1;
+                $rangDD[$i] = $rangDouble + 1;
 
                 $j = $i;
                 while ($countrepeatDouble > 1) {
                     $j = $j - 1;
                     $countrepeatDouble = $countrepeatDouble - 1;
                 }
-                $result_rang = ($rangDD[1][$i] + $rangDD[1][$j]) / 2;
+                $result_rang = ($rangDD[$i] + $rangDD[$j]) / 2;
                 $j = $i;
-                $rangDD[1][$j] = $result_rang;
+                $rangDD[$j] = $result_rang;
                 while ($changeDouble > 1) {
                     $j = $j - 1;
-                    $rangDD[1][$j] = $result_rang;
+                    $rangDD[$j] = $result_rang;
                     $changeDouble = $changeDouble - 1;
                 }
                 $countrepeatDouble = 1;
