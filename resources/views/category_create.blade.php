@@ -26,25 +26,29 @@
                         </div>
                     </div>
                     <div>
-                    <label for="nameThemeInput">Питання 1</label>
-                    <input type="text" name="q1" class="form-control" required="" value="">
-                    <br>
-                <div id="col_questions">
-                    <div class="col m-2">
-                        <input type="text" name="a11" class="form-control" style="width:90%;display:inline;" required="" value="">
-                        <input class="form-check-input" style="border: 1px solid #ced4da; width: 30px;transform: scale(1.3);" type="text" name="ca11" value="" id="defaultCheck1">
+                        <label for="nameThemeInput">Питання 1</label>
+                        <input type="text" name="q1" class="form-control" required="" value="">
+                        <br>
+                        <div id="col_questions">
+                            <div class="col m-2">
+                                <input type="text" name="a11" class="form-control" style="width:90%;display:inline;" required="" value="">
+                                <input class="form-check-input" style="border: 1px solid #ced4da; width: 30px;transform: scale(1.3);" type="text" name="ca11" value="" id="defaultCheck1">
+                            </div>
+                            <div class="col m-2">
+                                <input type="text" name="a12" class="form-control" style="width:90%;display:inline;" required="" value="">
+                                <input class="form-check-input" style="border: 1px solid #ced4da; width: 30px;transform: scale(1.3);" type="text" name="ca12" value="" id="defaultCheck1">
+                            </div>
+                            <div class="col m-2">
+                                <button name="submit" class="btn btn-info">Додати відповідь</button>
+                            </div>
+                            <div class="row m-3 justify-content-center">
+                                <button name="submit" class="btn btn-info">Додати питання</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col m-2">
-                        <input type="text" name="a12" class="form-control" style="width:90%;display:inline;" required="" value="">
-                        <input class="form-check-input" style="border: 1px solid #ced4da; width: 30px;transform: scale(1.3);" type="text" name="ca12" value="" id="defaultCheck1">
+                    <div class="row justify-content-center">
+                        <button type="submit" name="submit" class="btn btn-info">Завершити</button>
                     </div>
-                    <div class="col m-2">
-                    <button name="submit" class="btn btn-info">Додати відповідь</button> 
-                    </div>
-                    <button name="submit" class="btn btn-info">Додати питання</button> 
-                 </div>
-                    </div>
-                    <button type="submit" name="submit" class="btn btn-info">Завершити</button>
                 </form>
             </div>
         </div>

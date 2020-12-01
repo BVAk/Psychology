@@ -45,7 +45,9 @@
                     $i++
                     @endphp
                     @endforeach
-                    <button type="submit" name="submit" class="btn btn-info">Завершити</button>
+                    <div class="row justify-content-center">
+                    <button type="submit" name="submit" class="btn btn-info">Зберегти</button>
+                    </div>
                 </form>
             </div>
         </div>

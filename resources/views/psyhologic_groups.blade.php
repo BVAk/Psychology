@@ -237,20 +237,22 @@
         <br>Tемп=4.5+4.5+6=15
         <br>Tкр=10 при (р<=0.05) та 5(при р<=0.01)
         <br><b>Висновок: Темп<Ткр(0.05). Гіпотеза 1 відхилюється. Інтенсивність від'ємного здвигу показників перевершує інтенсивність додатнього здвигу</b>
-        </div>
+        <div class="col-md-8 mb-5"> <canvas id="myChart3" style="width: 100%; height:500px;"></canvas></div>    
+    </div>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
+    var ctx3 = document.getElementById('myChart3').getContext('2d');
     var jsondata = <?php echo $groups; ?>;
     var values = [];
 
     // Iterate through loop starting at position 1 
     // (position zero has a name, not a value)
     for (var i = 0; i < jsondata.length; i++) {
-        values.push(jsondata[i]['group']); // we end up with 12 values
+        values.push(jsondata[i]['group']); 
     }
     var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -621,6 +623,27 @@
                 text: 'Відношення рядів значень в виборках Фізики та Економісти'
             }
         }
+    });
+    
+    var myBarChart = new Chart(ctx3, {
+        type: 'horizontalBar',
+    data: {
+      labels: ["Client48", "Client11", "Client3", "Client49", "Client5", "Client44", "Client2", "Client8", "Client42", "Client43"],
+      datasets: [
+        {
+          label: "Різниця в балах",
+          backgroundColor: "#8e5ea2",
+          data: [-1,-4,7,7,-7,8,-9,-10,-14,-17]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: "Графічне уявлення від'ємних і додатніх здвигів показників"
+      }
+    }
     });
 </script>
 @endsection
