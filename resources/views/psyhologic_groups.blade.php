@@ -101,13 +101,16 @@
             тест "Опитувальник генералізованого тривожного розладу"
             <br>
         </div>
-            
+                 
             <table class="table table-bordered justify-content-center col-md-8">
                 <th colspan="2">IT</th><th colspan="2">Фізики</th>
                 <tr><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td></tr>
                 <tr></tr>
-            @for($i=1;$i<=count($mark)-1;$i++)
+           
+            @for($i=0;$i<count($mark)-1;$i++)
+            
             <?php $user=DB::table('Users')->where('id','=',$userId[$i])->first()?>
+            
 @if ($user->group=='IT')
             <tr>
             <td>{{$mark[$i]}}</td>
@@ -143,7 +146,7 @@
             <br>
             Емперична величина Uемп=({{$countIT}}*{{$countPhysic}})+({{$countPhysic}}*({{$countPhysic}}+1))/2-{{$sumRangPhysic}}={{($countIT*$countPhysic)+(($countPhysic*($countPhysic+1))/2)-$sumRangPhysic}}<br>
             Емперична величина Uемп=({{$countIT}}*{{$countPhysic}})+({{$countIT}}*({{$countIT}}+1))/2-{{$sumRangIT}}={{($countIT*$countPhysic)+(($countIT*($countIT+1))/2)-$sumRangIT}}<br>
-            Uкр=95 при p<=0.05, 76 при (p<=0.01)
+            Uкр=109 при p<=0.05, 88 при (p<=0.01)
             <br>
             <b> Висновок: Гіпотеза 1 приймається, група фізиків не перевершує групу ІТ.</b>
         </p>
@@ -153,7 +156,7 @@
             <h3 class="m-auto">Рангова кореляція</h3>
             <br>
             <div class="row">
-           Кореляція між двума показниками, тесту "Рівень реактивної тривоги" та "Особистісна тривога"
+           Кореляція між двума показниками, тесту "Рівень реактивної тривоги" та "Особистісна тривога" групи IT
            <br>
             Гіпотези:
             <br>
@@ -166,14 +169,13 @@
                 <tr><td>Оцінка тесту</td><td>Ранг</td><td>Оцінка тесту</td><td>Ранг</td><td>Різниця</td><td>Квадрат різниці</td></tr>
                 <tr></tr>
                 <?php $sum=0 ?>
-            @for($i=1;$i<=count($markCor)-1;$i++)
+            @for($i=0;$i<count($markCor)-1;$i++)
             <?php $user=DB::table('Users')->where('id','=',$userCorId[$i])->first()?>
-            <tr>
-            
+            <tr>            
             <td>{{$markCor[$i]}}</td>
 <td> {{$rangCor[$i]}} </td>
 <td>{{$markCor2[$i]}}</td>
-<td> {{$rangCor2[$i]}} </td>
+<td>{{$rangCor2[$i]}} </td>
 <td>{{$rangCor[$i]-$rangCor2[$i]}}</td>
 <td>{{($rangCor[$i]-$rangCor2[$i])*($rangCor[$i]-$rangCor2[$i])}}</td>
 <?php $sum=$sum+($rangCor[$i]-$rangCor2[$i])*($rangCor[$i]-$rangCor2[$i]) ?>
@@ -191,7 +193,7 @@
             <p>Коефіцієнт рангової кореляції: <br>
             r емп.=1-(6*{{$sum}})/({{count($rangCor)}}*({{count($rangCor)}}^2-1))={{1-(6*$sum)/(count($rangCor)*(count($rangCor)^2-1))}}
             <br>
-            r кр.=0.36 при (p<=0.05) та 0.47 при (p<=0.01)
+            r кр.=0.85 при (p<=0.05)
               <br>
            
             <b> Висновок: Гіпотеза 1 не приймається, кореляція між показниками двух тестів значима і є додатньою, відрізняється від 0 </b>
@@ -223,7 +225,7 @@
             </div>
         <table class="table table-bordered justify-content-center col-md-8">
             <tr><td>Клієнт</td><td>Перший результат тесту</td><td>Останній результат тесту</td><td>Різниця результатів</td><td>Абсолютне значення різниці результатів</td><td>Ранг різниці</td></tr>
-            @for($i=0;$i<count($user11);$i++)
+            @for($i=0;$i<count($user11)-1;$i++)
             <tr> <td>{{$user11[$i]}}</td>
             <td>{{$mark1[$i]}}</td>
             <td>{{$mark2[$i]}}</td>
